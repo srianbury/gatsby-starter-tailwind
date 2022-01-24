@@ -12,6 +12,14 @@ Kick off your project with this default boilerplate. This starter ships with the
 
 _Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
 
+## Features
+1. Styled with Tailwind CSS
+2. Responsive header with left navigation drawer
+3. Header items are vertically aligned
+4. Scroll bar all the time
+5. Footer at bottom if the content doesn't fill the page
+6. Runs at 0.0.0.0
+
 ## 🚀 Quick start
 
 1.  **Create a Gatsby site.**
