@@ -1,17 +1,12 @@
 import * as React from "react";
-import { useState } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
-import { Link, navigate } from "gatsby";
-import Drawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
+import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { LayoutContainer } from "./layoutContainer";
-
-const links = [
-  { title: "Home", to: "/" },
-  { title: "About", to: "/about" },
-];
+import { links } from "../constants/navigation";
+import { NavDrawer, NavDrawerContext } from "./navDrawer";
 
 const HeaderLink = ({ to, title }) => (
   <span className="pl-2 font-bold">
@@ -48,16 +43,7 @@ Header.defaultProps = {
 };
 
 const LeftTitle = ({ siteTitle }) => {
-  const [open, setOpen] = useState(false);
-
-  function closeDrawer() {
-    setOpen(false);
-  }
-
-  function drawerNavigate(to) {
-    navigate(to);
-    closeDrawer();
-  }
+  const { openDrawer } = useContext(NavDrawerContext);
 
   return (
     <div className="md:block align-middle">
@@ -65,27 +51,11 @@ const LeftTitle = ({ siteTitle }) => {
         <button
           // className="mr-1 p-1 rounded border-2 border-solid border-black"
           className="mr-2 pr-1 py-1"
-          onClick={() => setOpen(true)}
+          onClick={openDrawer}
         >
           <FontAwesomeIcon icon={faBars} size="lg" />
         </button>
-        <Drawer anchor="left" open={open} onClose={closeDrawer}>
-          <Box
-            sx={{
-              width: 250,
-            }}
-          >
-            <ul className="p-4">
-              {links.map(link => (
-                <DrawerNavItem
-                  to={link.to}
-                  title={link.title}
-                  drawerNavigate={drawerNavigate}
-                />
-              ))}
-            </ul>
-          </Box>
-        </Drawer>
+        <NavDrawer />
       </div>
       <div className="inline">
         <h1 className="inline align-middle">
@@ -102,24 +72,6 @@ LeftTitle.propTypes = {
 
 LeftTitle.defaultProps = {
   ...Header.defaultProps,
-};
-
-const DrawerNavItem = ({ to, title, drawerNavigate }) => (
-  <li className="cursor-pointer pb-4">
-    <button
-      type="button"
-      className="font-bold"
-      onClick={() => drawerNavigate(to)}
-    >
-      {title}
-    </button>
-  </li>
-);
-
-DrawerNavItem.propTypes = {
-  to: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  drawerNavigate: PropTypes.func.isRequired,
 };
 
 export default Header;
