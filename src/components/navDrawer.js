@@ -50,6 +50,7 @@ const NavDrawer = () => {
         <ul className="p-4">
           {links.map(link => (
             <DrawerNavItem
+              key={link.title}
               to={link.to}
               title={link.title}
               drawerNavigate={drawerNavigate}

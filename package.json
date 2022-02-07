@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@aws-amplify/ui-react": "^2.1.10",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -12,6 +13,7 @@
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@mui/material": "^5.3.0",
     "@mui/styles": "^5.3.0",
+    "aws-amplify": "^4.3.12",
     "gatsby": "^4.4.0",
     "gatsby-plugin-gatsby-cloud": "^4.4.0",
     "gatsby-plugin-image": "^2.4.0",

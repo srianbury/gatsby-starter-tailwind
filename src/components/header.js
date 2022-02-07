@@ -26,7 +26,7 @@ const Header = ({ siteTitle }) => (
         <LeftTitle siteTitle={siteTitle} />
         <div className="hidden md:block place-self-center">
           {links.map(link => (
-            <HeaderLink to={link.to} title={link.title} />
+            <HeaderLink key={link.title} to={link.to} title={link.title} />
           ))}
         </div>
       </div>
