@@ -2,6 +2,7 @@ import * as React from "react";
 import { useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { LayoutContainer } from "./layoutContainer";
@@ -24,14 +25,35 @@ const Header = ({ siteTitle }) => (
     <LayoutContainer>
       <div className="flex justify-between">
         <LeftTitle siteTitle={siteTitle} />
-        <div className="hidden md:block place-self-center">
+        <div className="hidden place-self-center md:block">
           {links.map(link => (
             <HeaderLink key={link.title} to={link.to} title={link.title} />
           ))}
+          <LoginOrUser />
         </div>
       </div>
     </LayoutContainer>
   </header>
+);
+
+const LoginOrUser = () => {
+  const { user, signOut } = useAuthenticator(context => [context.user]);
+
+  return (
+    <span className="pl-2 font-bold">
+      {user ? (
+        <HeaderLogoutButton {...{ user, signOut }} />
+      ) : (
+        <Link to="/login">Login</Link>
+      )}
+    </span>
+  );
+};
+
+const HeaderLogoutButton = ({ user, signOut }) => (
+  <button type="button" onClick={signOut} className="font-bold">
+    {`${user.username}: Sign Out`}
+  </button>
 );
 
 Header.propTypes = {
@@ -46,11 +68,11 @@ const LeftTitle = ({ siteTitle }) => {
   const { openDrawer } = useContext(NavDrawerContext);
 
   return (
-    <div className="md:block align-middle">
-      <div className="md:hidden inline align-middle">
+    <div className="align-middle md:block">
+      <div className="inline align-middle md:hidden">
         <button
           // className="mr-1 p-1 rounded border-2 border-solid border-black"
-          className="mr-2 pr-1 py-1"
+          className="mr-2 py-1 pr-1"
           onClick={openDrawer}
         >
           <FontAwesomeIcon icon={faBars} size="lg" />
