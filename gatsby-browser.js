@@ -3,6 +3,7 @@ import { isMobile } from "react-device-detect";
 import Amplify from "aws-amplify";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import awsExports from "./src/aws-exports";
+import { LoginModalProvider, LoginModal } from "./src/components/LoginModal";
 import {
   NavDrawer,
   NavDrawerContextProvider,
@@ -26,7 +27,10 @@ const wrapPageElement = ({ element }) => {
 
 const wrapRootElement = ({ element }) => (
   <Authenticator.Provider>
-    <Authenticated>{element}</Authenticated>
+    <LoginModalProvider>
+      <LoginModal />
+      <Authenticated>{element}</Authenticated>
+    </LoginModalProvider>
   </Authenticator.Provider>
 );
 
