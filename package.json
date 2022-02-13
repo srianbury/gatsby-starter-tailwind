@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@aws-amplify/ui": "^3.0.12",
     "@aws-amplify/ui-react": "^2.3.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",

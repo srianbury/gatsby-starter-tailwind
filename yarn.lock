@@ -208,7 +208,7 @@
   resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-2.0.5.tgz#0800938a0bf36ff51922637628b0889017da19f1"
   integrity sha512-atoc/zIJRhgpoSDDKgRxbTSD7D9S4wbOzHUHMqRlcEPRKqRrQPGvd6zCUVSBS0jqdrrw6+UTJbWj7ttWCfE4pQ==
 
-"@aws-amplify/ui@3.0.12":
+"@aws-amplify/ui@3.0.12", "@aws-amplify/ui@^3.0.12":
   version "3.0.12"
   resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-3.0.12.tgz#34f3cfd986939591caa01cef9012cb98d249faaf"
   integrity sha512-fBfWhsiUOjsqv/fAv5WfK8vyZpvuAi6M/B8DWrwMbkf8vQzcC/WPKSUcCXk9YlJJsA1a2yX7mpu3Dq5rnr89iA==
