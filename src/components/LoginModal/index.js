@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createContext, useState, useContext, useEffect } from "react";
-import { Modal } from "@mui/material";
+import { Dialog } from "@mui/material";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 
 const LoginModalContext = createContext();
@@ -35,17 +35,16 @@ const LoginModal = () => {
   }, [route, closeModal, isOpen]);
 
   return (
-    <Modal
+    <Dialog
       open={isOpen}
       onClose={closeModal}
       aria-labelledby="login-modal-title"
       aria-describedby="login-modal-description"
     >
       <div>
-        <h3>Login</h3>
         <Authenticator />
       </div>
-    </Modal>
+    </Dialog>
   );
 };
 

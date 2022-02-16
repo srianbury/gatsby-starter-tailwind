@@ -5,17 +5,24 @@ import { links } from "../../constants/navigation";
 import { HeaderLink } from "./HeaderLink";
 import { LeftTitle } from "./LeftTitle";
 import { LoginOrUser } from "./LoginOrUser";
+import { darkModeTheme } from "../../styles";
 
 const Header = ({ siteTitle }) => (
-  <header className="bg-purple-500">
+  <header
+    className={`${darkModeTheme} border-b-2 border-black dark:border-white`}
+  >
     <LayoutContainer>
       <div className="flex justify-between">
         <LeftTitle siteTitle={siteTitle} />
         <div className="hidden place-self-center md:block">
           {links.map(link => (
-            <HeaderLink key={link.title} to={link.to} title={link.title} />
+            <span key={link.title} className="pl-2 font-bold">
+              <HeaderLink to={link.to} title={link.title} />
+            </span>
           ))}
-          <LoginOrUser />
+          <span className="pl-2 font-bold">
+            <LoginOrUser />
+          </span>
         </div>
       </div>
     </LayoutContainer>

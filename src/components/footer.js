@@ -1,8 +1,11 @@
 import * as React from "react";
 import { LayoutContainer } from "./layoutContainer";
+import { darkModeTheme } from "../styles";
 
 const Footer = () => (
-  <footer className="bg-purple-500">
+  <footer
+    className={`${darkModeTheme} border-t-2 border-black dark:border-white`}
+  >
     <LayoutContainer>
       <>
         © {new Date().getFullYear()}, Built with

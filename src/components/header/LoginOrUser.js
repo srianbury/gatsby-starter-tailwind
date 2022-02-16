@@ -1,42 +1,39 @@
 import * as React from "react";
 import { useContext } from "react";
-import { LoginModalContext } from "../LoginModal";
-import PropTypes from "prop-types";
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import { Button } from "@mui/material";
+import { LoginModalContext } from "../LoginModal";
 
 const LoginOrUser = () => {
-  const { user, route, signOut } = useAuthenticator(context => [context.route]);
+  const { route } = useAuthenticator(context => [context.route]);
 
-  return (
-    <span className="pl-2 font-bold">
-      {route === "authenticated" ? (
-        <HeaderLogoutButton {...{ user, signOut }} />
-      ) : (
-        <OpenLoginModalButton />
-      )}
-    </span>
+  return route === "authenticated" ? (
+    <HeaderLogoutButton />
+  ) : (
+    <OpenLoginModalButton />
   );
 };
+LoginOrUser.propTypes = {};
 
-const HeaderLogoutButton = ({ user, signOut }) => (
-  <button type="button" onClick={signOut} className="font-bold">
-    {`${user.username}: Sign Out`}
-  </button>
-);
-
-HeaderLogoutButton.propTypes = {
-  user: PropTypes.object.isRequired, // user should be the CognitoUserAmplify
-  signOut: PropTypes.func.isRequired,
+const HeaderLogoutButton = () => {
+  const { user, signOut } = useAuthenticator(context => [context.route]);
+  return (
+    <Button onClick={signOut} className="dark:border-white dark:text-white">
+      <span className="font-bold">{`${user.username}: Log Out`}</span>
+    </Button>
+  );
 };
+HeaderLogoutButton.propTypes = {};
 
 const OpenLoginModalButton = () => {
   const { openModal } = useContext(LoginModalContext);
 
   return (
-    <button onClick={openModal} type="button" className="border">
-      Login
-    </button>
+    <Button onClick={openModal} className="dark:border-white dark:text-white">
+      <span className="font-bold">Log In</span>
+    </Button>
   );
 };
+OpenLoginModalButton.propTypes = {};
 
-export { LoginOrUser };
+export { LoginOrUser, HeaderLogoutButton, OpenLoginModalButton };

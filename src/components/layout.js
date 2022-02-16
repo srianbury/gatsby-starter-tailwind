@@ -12,6 +12,7 @@ import { isMobile } from "react-device-detect";
 import { Header } from "./header";
 import { LayoutContainer } from "./layoutContainer";
 import { Footer } from "./footer";
+import { darkModeTheme } from "../styles";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -26,12 +27,12 @@ const Layout = ({ children }) => {
 
   return (
     <div
-      className={`flex flex-col justify-between ${
+      className={`flex flex-col justify-between ${darkModeTheme} ${
         isMobile ? "mobile-fix-100vh" : "h-screen"
       }`}
     >
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <main className="mb-auto">
+      <main className={`mb-auto ${darkModeTheme}`}>
         <LayoutContainer>{children}</LayoutContainer>
       </main>
       <Footer />
