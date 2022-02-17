@@ -1,20 +1,25 @@
 import { createTheme } from "@mui/material/styles";
 
-const theme = createTheme({
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: "none",
-          color: "black",
-          border: "2px solid black",
-          "&:hover": {
-            background: "transparent",
-          },
-        },
-      },
+const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+    primary: {
+      main: "#ff0000",
     },
   },
 });
 
-export { theme };
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#0000ff",
+    },
+  },
+});
+
+function getTheme(prefersDarkMode) {
+  return prefersDarkMode ? darkTheme : lightTheme;
+}
+
+export { getTheme };

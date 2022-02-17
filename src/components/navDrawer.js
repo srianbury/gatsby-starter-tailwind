@@ -5,8 +5,6 @@ import { navigate } from "gatsby";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { gray } from "tailwindcss/colors";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import { links } from "../constants/navigation";
 import { HeaderLogoutButton, OpenLoginModalButton } from "./header/LoginOrUser";
 
@@ -39,7 +37,6 @@ const NavDrawerContextProvider = ({ children }) => {
 const NavDrawer = () => {
   const { open, closeDrawer } = useContext(NavDrawerContext);
   const { route } = useAuthenticator(context => [context.route]);
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   function drawerNavigate(to) {
     navigate(to);
@@ -47,16 +44,7 @@ const NavDrawer = () => {
   }
 
   return (
-    <Drawer
-      anchor="left"
-      open={open}
-      onClose={closeDrawer}
-      sx={{
-        ".MuiDrawer-paper": {
-          background: prefersDarkMode ? gray[900] : "white",
-        },
-      }}
-    >
+    <Drawer anchor="left" open={open} onClose={closeDrawer}>
       <Box
         sx={{
           width: 250,
@@ -89,11 +77,7 @@ const NavDrawer = () => {
 
 const DrawerNavItem = ({ to, title, drawerNavigate }) => (
   <li className="cursor-pointer pb-4">
-    <button
-      type="button"
-      className="font-bold dark:text-white"
-      onClick={() => drawerNavigate(to)}
-    >
+    <button type="button" onClick={() => drawerNavigate(to)}>
       {title}
     </button>
   </li>

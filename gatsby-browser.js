@@ -1,15 +1,18 @@
 import * as React from "react";
+import { useMemo } from "react";
 import { isMobile } from "react-device-detect";
 import Amplify from "aws-amplify";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, useMediaQuery } from "@mui/material";
+
 import awsExports from "./src/aws-exports";
 import { LoginModalProvider, LoginModal } from "./src/components/LoginModal";
 import {
   NavDrawer,
   NavDrawerContextProvider,
 } from "./src/components/navDrawer";
-import { theme } from "./src/styles";
+import { getTheme } from "./src/styles";
 import "./src/styles/global.css";
 
 Amplify.configure(awsExports);
@@ -17,16 +20,23 @@ Amplify.configure(awsExports);
 const wrapPageElement = ({ element }) => {
   return (
     <div className={`${isMobile ? "mobile-fix-100vh" : "h-screen"}`}>
-      <ThemeProvider theme={theme}>
+      <Themer>
+        <CssBaseline />
         <NavDrawerContextProvider>
           <>
             <NavDrawer />
             {element}
           </>
         </NavDrawerContextProvider>
-      </ThemeProvider>
+      </Themer>
     </div>
   );
+};
+
+const Themer = ({ children }) => {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const theme = useMemo(() => getTheme(prefersDarkMode), [prefersDarkMode]);
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 
 const wrapRootElement = ({ element }) => (

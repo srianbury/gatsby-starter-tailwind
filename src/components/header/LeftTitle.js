@@ -22,7 +22,7 @@ const LeftTitle = ({ siteTitle }) => {
         <NavDrawer />
       </div>
       <div className="inline">
-        <h1 className="inline align-middle text-black dark:text-white">
+        <h1 className="inline align-middle">
           <Link to="/">{siteTitle}</Link>
         </h1>
       </div>

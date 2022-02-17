@@ -21,9 +21,10 @@ LoginOrUser.propTypes = {};
 const HeaderLogoutButton = () => {
   const { user, signOut } = useAuthenticator(context => [context.route]);
   return (
-    <Button onClick={signOut} className="dark:border-white dark:text-white">
-      <span className="font-bold">{`${user.username}: Log Out`}</span>
-    </Button>
+    <Button
+      onClick={signOut}
+      variant="outlined"
+    >{`${user.username}: Log Out`}</Button>
   );
 };
 HeaderLogoutButton.propTypes = {};
@@ -42,8 +43,8 @@ const OpenLoginModalButton = () => {
   }
 
   return (
-    <Button onClick={handleClick} className="dark:border-white dark:text-white">
-      <span className="font-bold">Log In</span>
+    <Button onClick={handleClick} variant="outlined">
+      Log In
     </Button>
   );
 };
