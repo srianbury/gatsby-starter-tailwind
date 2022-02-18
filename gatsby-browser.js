@@ -17,17 +17,15 @@ import "./src/styles/global.css";
 
 Amplify.configure(awsExports);
 
+// styles here
 const wrapPageElement = ({ element }) => {
   return (
     <div className={`${isMobile ? "mobile-fix-100vh" : "h-screen"}`}>
       <Themer>
         <CssBaseline />
-        <NavDrawerContextProvider>
-          <>
-            <NavDrawer />
-            {element}
-          </>
-        </NavDrawerContextProvider>
+        <NavDrawer />
+        <LoginModal />
+        {element}
       </Themer>
     </div>
   );
@@ -36,15 +34,18 @@ const wrapPageElement = ({ element }) => {
 const Themer = ({ children }) => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = useMemo(() => getTheme(prefersDarkMode), [prefersDarkMode]);
+
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 
+// context providers here
 const wrapRootElement = ({ element }) => (
   <Authenticator.Provider>
-    <LoginModalProvider>
-      <LoginModal />
-      <Authenticated>{element}</Authenticated>
-    </LoginModalProvider>
+    <NavDrawerContextProvider>
+      <LoginModalProvider>
+        <Authenticated>{element}</Authenticated>
+      </LoginModalProvider>
+    </NavDrawerContextProvider>
   </Authenticator.Provider>
 );
 
@@ -52,11 +53,13 @@ const Authenticated = ({ children }) => {
   const { route } = useAuthenticator(context => [context.route]);
 
   /*
-    1. there's a problem with amplify's Router, but we
-      can fix it by doing it ourselves.
-    2. We don't want to show the Authenticator if the user is not logged in initially (
-      so they can use they app before) logging in, 
-      but we want to render if quickly if they are authenticated so we get the user info
+    We don't want to show the Authenticator if the user is not logged in initially 
+    (so they can use they app before) logging in, 
+    but we want to render if quickly if they are authenticated so we get the user info from amplify
+    flow is either 
+      1. idle -> setup -> sign in or
+      2. idle -> setup -> authenticated
+
   */
   return ["idle", "setup"].includes(route) ? <Authenticator /> : children;
 };
