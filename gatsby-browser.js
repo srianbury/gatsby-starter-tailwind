@@ -18,18 +18,16 @@ import "./src/styles/global.css";
 Amplify.configure(awsExports);
 
 // styles here
-const wrapPageElement = ({ element }) => {
-  return (
-    <div className={`${isMobile ? "mobile-fix-100vh" : "h-screen"}`}>
-      <Themer>
-        <CssBaseline />
-        <NavDrawer />
-        <LoginModal />
-        {element}
-      </Themer>
-    </div>
-  );
-};
+const wrapPageElement = ({ element }) => (
+  <div className={`${isMobile ? "mobile-fix-100vh" : "h-screen"}`}>
+    <Themer>
+      <CssBaseline />
+      <NavDrawer />
+      <LoginModal />
+      {element}
+    </Themer>
+  </div>
+);
 
 const Themer = ({ children }) => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
