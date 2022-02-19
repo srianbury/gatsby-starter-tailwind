@@ -1,6 +1,6 @@
 {
   "auth": {
-    "starter4d802c40": {
+    "dooblydood47829cc": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
