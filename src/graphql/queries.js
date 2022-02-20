@@ -10,7 +10,6 @@ export const getPost = /* GraphQL */ `
       url
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -28,7 +27,6 @@ export const listPosts = /* GraphQL */ `
         url
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }

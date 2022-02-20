@@ -13,7 +13,6 @@ export const createPost = /* GraphQL */ `
       url
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -29,7 +28,6 @@ export const updatePost = /* GraphQL */ `
       url
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -45,7 +43,6 @@ export const deletePost = /* GraphQL */ `
       url
       createdAt
       updatedAt
-      owner
     }
   }
 `;
