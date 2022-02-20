@@ -1,45 +1,84 @@
 import * as React from "react";
-import { StaticImage } from "gatsby-plugin-image";
+import { useState, useEffect } from "react";
+import { API, graphqlOperation } from "aws-amplify";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
+import { createPost } from "../graphql/mutations";
+import { listPosts } from "../graphql/queries";
 
-const IndexPage = () => (
-  <Layout>
-    <Seo title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>This page is scrollable, but the footer should still be at the bottom</p>
+const IndexPage = () => {
+  return (
+    <Layout>
+      <Seo title="Home" />
+      <CreatePost />
+      <ListPosts />
+    </Layout>
+  );
+};
+
+const CreatePost = () => {
+  const newPost = {
+    title: "NUMBER 3",
+    body: "Lorem ipsum.  This is the body.",
+    url: "https://www.youtube.com/watch?v=1L2hrG-7i2Y",
+  };
+
+  async function submitPost() {
+    console.log("submitting post");
+    try {
+      const result = await API.graphql(
+        graphqlOperation(createPost, { input: newPost })
+      );
+      console.log({ result });
+    } catch (e) {
+      console.log({ e });
+    }
+  }
+
+  return (
     <div>
-      <StaticImage
-        src="../images/gatsby-astronaut.png"
-        width={300}
-        quality={95}
-        formats={["auto", "webp", "avif"]}
-        alt="A Gatsby astronaut"
-        style={{ marginBottom: `1.45rem` }}
-      />
+      <h1>Create a Post</h1>
+      <button type="submit" onClick={submitPost}>
+        Submit a Post
+      </button>
     </div>
+  );
+};
+
+const ListPosts = () => {
+  const [posts, setPosts] = useState(null);
+
+  useEffect(() => {
+    async function read() {
+      const result = await API.graphql(graphqlOperation(listPosts));
+      setPosts(result.data.listPosts.items);
+    }
+    read();
+  }, []);
+
+  if (posts === null) {
+    return <div>Loading...</div>;
+  }
+
+  if (posts.length === 0) {
+    return <div>No posts.</div>;
+  }
+
+  return (
     <div>
-      <StaticImage
-        src="../images/gatsby-astronaut.png"
-        width={300}
-        quality={95}
-        formats={["auto", "webp", "avif"]}
-        alt="A Gatsby astronaut"
-        style={{ marginBottom: `1.45rem` }}
-      />
+      {posts.map(post => (
+        <div key={post.id} className="border-rounded mb-2 border p-2">
+          <div>{post.body}</div>
+          <div>{post.createdAt}</div>
+          <div>{post.id}</div>
+          {/* <div>{post.owner}</div> */}
+          <div>{post.title}</div>
+          <div>{post.updatedAt}</div>
+          <div>{post.url}</div>
+        </div>
+      ))}
     </div>
-    <div>
-      <StaticImage
-        src="../images/gatsby-astronaut.png"
-        width={300}
-        quality={95}
-        formats={["auto", "webp", "avif"]}
-        alt="A Gatsby astronaut"
-        style={{ marginBottom: `1.45rem` }}
-      />
-    </div>
-  </Layout>
-);
+  );
+};
 
 export default IndexPage;

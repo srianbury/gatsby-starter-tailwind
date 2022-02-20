@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "dooblydoo",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authdooblydood47829cc",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
