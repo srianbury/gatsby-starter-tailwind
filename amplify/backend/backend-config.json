@@ -39,12 +39,7 @@
           },
           "additionalAuthenticationProviders": [
             {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 7,
-                "apiKeyExpirationDate": "2022-02-27T14:55:44.748Z",
-                "description": "dooblydooapikeydesc"
-              }
+              "authenticationType": "AWS_IAM"
             }
           ]
         }
