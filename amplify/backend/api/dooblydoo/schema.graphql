@@ -3,14 +3,9 @@
 
 type Post
   @model
-  @auth(
-    rules: [
-      { allow: public, operations: [read], provider: iam }
-      { allow: owner }
-    ]
-  ) {
+  @auth(rules: [{ allow: public, operations: [read], provider: iam }, { allow: owner }]) {
   id: ID!
   title: String!
-  body: String!
+  description: String!
   source: String
 }

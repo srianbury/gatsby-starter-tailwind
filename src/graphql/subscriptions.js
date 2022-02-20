@@ -6,7 +6,7 @@ export const onCreatePost = /* GraphQL */ `
     onCreatePost(owner: $owner) {
       id
       title
-      body
+      description
       source
       createdAt
       updatedAt
@@ -19,7 +19,7 @@ export const onUpdatePost = /* GraphQL */ `
     onUpdatePost(owner: $owner) {
       id
       title
-      body
+      description
       source
       createdAt
       updatedAt
@@ -32,7 +32,7 @@ export const onDeletePost = /* GraphQL */ `
     onDeletePost(owner: $owner) {
       id
       title
-      body
+      description
       source
       createdAt
       updatedAt
