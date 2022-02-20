@@ -7,9 +7,10 @@ export const getPost = /* GraphQL */ `
       id
       title
       body
-      url
+      source
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -24,9 +25,10 @@ export const listPosts = /* GraphQL */ `
         id
         title
         body
-        url
+        source
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

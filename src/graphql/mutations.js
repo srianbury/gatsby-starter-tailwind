@@ -10,9 +10,10 @@ export const createPost = /* GraphQL */ `
       id
       title
       body
-      url
+      source
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -25,9 +26,10 @@ export const updatePost = /* GraphQL */ `
       id
       title
       body
-      url
+      source
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -40,9 +42,10 @@ export const deletePost = /* GraphQL */ `
       id
       title
       body
-      url
+      source
       createdAt
       updatedAt
+      owner
     }
   }
 `;

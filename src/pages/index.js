@@ -21,6 +21,7 @@ const ListPosts = () => {
     async function read() {
       try {
         const result = await API.graphql(graphqlOperation(listPosts));
+        console.log({ result });
         setPosts(result.data.listPosts.items);
       } catch (e) {
         setPosts([]);
@@ -42,13 +43,11 @@ const ListPosts = () => {
     <div>
       {posts.map(post => (
         <div key={post.id} className="border-rounded mb-2 border p-2">
+          <h2>{post.title}</h2>
           <div>{post.body}</div>
-          <div>{post.createdAt}</div>
-          <div>{post.id}</div>
-          {/* <div>{post.owner}</div> */}
-          <div>{post.title}</div>
-          <div>{post.updatedAt}</div>
-          <div>{post.url}</div>
+          <div>{`Source ${post.source}`}</div>
+          <div>{`Created at: ${post.createdAt}`}</div>
+          <div>{post.owner}</div>
         </div>
       ))}
     </div>
