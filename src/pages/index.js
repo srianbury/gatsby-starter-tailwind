@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { API, graphqlOperation } from "aws-amplify";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import { listPosts } from "../graphql/queries";
@@ -15,12 +16,17 @@ const IndexPage = () => {
 };
 
 const ListPosts = () => {
+  const { user } = useAuthenticator(context => [context.user]);
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
     async function read() {
       try {
-        const result = await API.graphql(graphqlOperation(listPosts));
+        const result = await API.graphql({
+          query: listPosts,
+          variables: {},
+          authMode: user ? "AMAZON_COGNITO_USER_POOLS" : "AWS_IAM",
+        });
         console.log({ result });
         setPosts(result.data.listPosts.items);
       } catch (e) {

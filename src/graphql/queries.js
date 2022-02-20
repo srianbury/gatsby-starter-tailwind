@@ -6,7 +6,7 @@ export const getPost = /* GraphQL */ `
     getPost(id: $id) {
       id
       title
-      description
+      body
       source
       createdAt
       updatedAt
@@ -24,7 +24,7 @@ export const listPosts = /* GraphQL */ `
       items {
         id
         title
-        description
+        body
         source
         createdAt
         updatedAt

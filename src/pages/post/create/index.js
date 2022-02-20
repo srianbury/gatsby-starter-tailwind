@@ -1,12 +1,14 @@
 import * as React from "react";
 import { useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Button } from "@mui/material";
 import { createPost } from "../../../graphql/mutations";
 import Layout from "../../../components/layout";
 import Seo from "../../../components/seo";
 
 const CreatePostPage = () => {
+  const { user } = useAuthenticator(context => [context.user]);
   const [state, setState] = useState({
     title: "",
     body: "",
@@ -14,7 +16,6 @@ const CreatePostPage = () => {
   });
 
   function handleInputChange(event) {
-    event.preventDefault();
     setState(cur => ({
       ...cur,
       [event.target.name]: event.target.value,
@@ -25,9 +26,12 @@ const CreatePostPage = () => {
     e.preventDefault();
     console.log("submitting post");
     try {
-      const result = await API.graphql(
-        graphqlOperation(createPost, { input: state })
-      );
+      // const result = await API.graphql(graphqlOperation(createPost, { input: state }));
+      const result = await API.graphql({
+        query: createPost,
+        variables: { input: state },
+        authMode: user ? "AMAZON_COGNITO_USER_POOLS" : "AWS_IAM",
+      });
       console.log({ result });
     } catch (e) {
       console.log({ e });

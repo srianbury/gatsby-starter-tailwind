@@ -6,6 +6,6 @@ type Post
   @auth(rules: [{ allow: public, operations: [read], provider: iam }, { allow: owner }]) {
   id: ID!
   title: String!
-  description: String!
+  body: String!
   source: String
 }
