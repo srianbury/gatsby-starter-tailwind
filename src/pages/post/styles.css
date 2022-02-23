@@ -1,28 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  overflow-y: scroll;
-}
-
-h1 {
-  display: block;
-  font-size: 2em;
-  font-weight: bold;
-}
-
-h2 {
-  display: block;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.mobile-fix-100vh {
-  min-height: -webkit-fill-available;
-}
-
+/* 
 .RichTextEditor__root___2QXK- {
+  color: white;
+  background: none;
   border: none;
   font-family: "Roboto","Helvetica","Arial",sans-serif
 }
@@ -30,11 +9,12 @@ h2 {
 .markdown-viewonly .RichTextEditor__root___2QXK- .RichTextEditor__editor___1QqIU .DraftEditor-root .DraftEditor-editorContainer .public-DraftEditor-content {
   margin: 0;
   padding: 0;
-}
-
-/* 
-.public-DraftEditor-content {
-  padding: 0px;
+  background: none;
+  color: white;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.00938em;
 }
 
 .custom-rte-editor-style {
@@ -43,7 +23,7 @@ h2 {
   border: none;
 }
 
-/* RichTextEditor Button SVGs
+/* RichTextEditor Button SVGs 
 .IconButton__icon___3YgOS {
   filter: invert(100%);
 } */

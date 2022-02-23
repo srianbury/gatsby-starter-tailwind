@@ -6,14 +6,14 @@ const lightTheme = createTheme({
   },
 });
 
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
+// const darkTheme = createTheme({
+//   palette: {
+//     mode: "dark",
+//   },
+// });
 
 function getTheme(prefersDarkMode) {
-  return prefersDarkMode ? darkTheme : lightTheme;
+  return lightTheme; // prefersDarkMode ? darkTheme : lightTheme; TODO Override the styles for the RichTextEditor before allowing darkMode
 }
 
 export { getTheme };

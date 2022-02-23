@@ -1,10 +1,14 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import PropTypes from "prop-types";
+import { Link } from "gatsby";
+import { API } from "aws-amplify"; // graphqlOperation
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import { Box, Skeleton } from "@mui/material";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import { listPosts } from "../graphql/queries";
+import { formattedDate } from "../utils";
 
 const IndexPage = () => {
   return (
@@ -46,10 +50,14 @@ const ListPosts = () => {
       }
     }
     read();
-  }, []);
+  }, [user]);
 
   if (posts.data === null) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <PostSkeletons />
+      </div>
+    );
   }
 
   if (posts.error !== null) {
@@ -63,17 +71,52 @@ const ListPosts = () => {
   return (
     <div>
       {posts.data.map(post => (
-        <div key={post.id} className="border-rounded mb-2 border p-2">
-          <h2>{post.title}</h2>
-          <div>{post.body}</div>
-          <div>{`Source: ${post.source}`}</div>
-          <div>{`Created at: ${post.createdAt}`}</div>
-          <div>{post.owner}</div>
-          <div>{post.id}</div>
-        </div>
+        <PostView key={post.id} post={post} />
       ))}
     </div>
   );
 };
+
+const StyledHeader = ({ to, children }) => {
+  return (
+    <Box
+      sx={{
+        "&:hover": {
+          textDecoration: "underline",
+        },
+      }}
+    >
+      <Link to={to}>{children}</Link>
+    </Box>
+  );
+};
+StyledHeader.propTypes = {
+  to: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+const PostView = ({ post }) => (
+  <div className="border-rounded mb-2 border-2 p-2">
+    <StyledHeader to={`/post/${post.id}/`}>
+      <h2>{post.title}</h2>
+    </StyledHeader>
+    <div>{`${post.owner} • ${formattedDate(post.createdAt)}`}</div>
+  </div>
+);
+PostView.propTypes = {
+  post: PropTypes.object.isRequired, // TODO add actual shape of post here
+};
+
+const PostSkeletons = () =>
+  [1, 2, 3].map(val => (
+    <div key={val} className="border-rounded mb-2 border-2 p-2">
+      <Skeleton>
+        <h1>Placeholder</h1>
+      </Skeleton>
+      <Skeleton sx={{ width: 200, maxWidth: "100%" }}>
+        <div>Placeholder</div>
+      </Skeleton>
+    </div>
+  ));
 
 export default IndexPage;

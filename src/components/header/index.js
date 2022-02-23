@@ -5,7 +5,7 @@ import { LayoutContainer } from "../layoutContainer";
 import { links } from "../../constants/navigation";
 import { HeaderLink } from "./HeaderLink";
 import { LeftTitle } from "./LeftTitle";
-import { LoginOrUser } from "./LoginOrUser";
+import { LoginOrUser, OpenLoginModalButton } from "./LoginOrUser";
 
 const Header = ({ siteTitle }) => (
   <header>
@@ -34,4 +34,4 @@ const HeaderPropTypes = {
 };
 
 Header.propTypes = HeaderPropTypes;
-export { Header, HeaderPropTypes };
+export { Header, HeaderPropTypes, OpenLoginModalButton };
