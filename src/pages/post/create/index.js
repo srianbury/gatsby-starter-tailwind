@@ -3,13 +3,16 @@ import { useState } from "react";
 import { Link } from "gatsby";
 import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { Button, TextField, Box } from "@mui/material";
+import { Button, TextField, Box, FormHelperText } from "@mui/material";
 import PropTypes from "prop-types";
 import RichTextEditor from "react-rte";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import { createPost } from "../../../graphql/mutations";
 import Layout from "../../../components/layout";
 import Seo from "../../../components/seo";
 import { OpenLoginModalButton } from "../../../components/header";
+// import { getYoutubeVideoId } from "../../../utils";
 
 const toolbarConfig = {
   display: ["INLINE_STYLE_BUTTONS", "BLOCK_TYPE_BUTTONS"],
@@ -23,76 +26,63 @@ const toolbarConfig = {
     { label: "OL", style: "ordered-list-item" },
   ],
 };
-
-const INIT_POST_STATE = {
-  error: null,
-  success: {
-    bool: false,
-    data: {},
-  },
-  data: {
-    title: "",
-    body: RichTextEditor.createEmptyValue(),
-    source: "",
-  },
-};
 const CreatePostPage = () => {
   const { user } = useAuthenticator(context => [context.user]);
-  const [state, setState] = useState(INIT_POST_STATE);
+  const [afterFetchData, setAfterFetchData] = useState({
+    error: null,
+    data: null,
+  });
 
-  function handleInputChange(event) {
-    setState(cur => ({
-      ...cur,
-      data: {
-        ...cur.data,
-        [event.target.name]: event.target.value,
-      },
-    }));
-  }
-
-  function handleRichTextInputChange(value) {
-    setState(cur => ({
-      ...cur,
-      data: {
-        ...cur.data,
-        body: value,
-      },
-    }));
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    console.log("submitting post");
+  async function handleSubmit(
+    values,
+    { setSubmitting, resetForm, setFieldError }
+  ) {
     try {
-      setState(cur => ({
-        ...cur,
-        error: INIT_POST_STATE.error,
-        success: INIT_POST_STATE.success,
-      }));
-      // const result = await API.graphql(graphqlOperation(createPost, { input: state }));
+      // const youtubeVideoId = getYoutubeVideoId(values.source);
+      setAfterFetchData({ error: null, data: null });
+      if (!values.body.getEditorState().getCurrentContent().hasText()) {
+        setFieldError("body", "Description cannot be blank.");
+        return;
+      }
       const result = await API.graphql({
         query: createPost,
         variables: {
-          input: { ...state.data, body: state.data.body.toString("markdown") },
+          input: { ...values, body: values.body.toString("markdown") },
         },
         authMode: user ? "AMAZON_COGNITO_USER_POOLS" : "AWS_IAM",
       });
-
-      setState({
-        ...INIT_POST_STATE,
-        success: {
-          bool: true,
-          data: result.data.createPost,
-        },
+      resetForm();
+      setAfterFetchData({
+        error: null,
+        data: result.data.createPost,
       });
-      console.log({ result, state });
     } catch (e) {
-      setState(cur => ({
-        ...cur,
+      setAfterFetchData({
         error: "An unexpected error occurred.",
-      }));
+        data: null,
+      });
       console.log({ e });
+    } finally {
+      setSubmitting(false);
     }
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      body: RichTextEditor.createEmptyValue(),
+      source: "",
+    },
+    validationSchema: Yup.object({
+      title: Yup.string().required("Title is required."),
+      // body: Yup.string().required("Description is required."),
+      source: Yup.string(),
+    }),
+    onSubmit: handleSubmit,
+  });
+
+  function handleRichTextInputChange(value) {
+    formik.setFieldValue("body", value);
   }
 
   return (
@@ -100,24 +90,22 @@ const CreatePostPage = () => {
       <Seo title="Post - Create" />
       {!user ? (
         <div>
-          Login to Create a Post
+          <div className="mb-2">Login to Create a Post</div>
           <OpenLoginModalButton />
         </div>
       ) : (
         <div>
           <h1 className="mb-2">Create a Post</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={formik.handleSubmit}>
             <TextField
               required
               fullWidth
+              type="text"
               autoComplete="off"
               className="mb-2"
-              id="title"
-              name="title"
               label="Title"
               variant="outlined"
-              value={state.data.title}
-              onChange={handleInputChange}
+              {...formik.getFieldProps("title")}
               sx={{
                 width: "100%",
                 maxWidth: "sm",
@@ -133,8 +121,7 @@ const CreatePostPage = () => {
               name="source"
               label="Source"
               variant="outlined"
-              value={state.data.source}
-              onChange={handleInputChange}
+              {...formik.getFieldProps("source")}
               sx={{
                 width: "100%",
                 maxWidth: "sm",
@@ -156,21 +143,35 @@ const CreatePostPage = () => {
                   name="body"
                   className="custom-rte-editor-style"
                   toolbarConfig={toolbarConfig}
-                  value={state.data.body}
+                  value={formik.values.body}
                   onChange={handleRichTextInputChange}
                 />
               </Box>
+              <div className="ml-3">
+                <FormHelperText>Description</FormHelperText>
+              </div>
+              {formik.touched.body && formik.errors.body ? (
+                <div className="ml-3">
+                  <FormHelperText error>{formik.errors.body}</FormHelperText>
+                </div>
+              ) : null}
             </div>
-            {state.error ? <div className="mb-2">{state.error}</div> : null}
-            {state.success.bool ? (
+            {afterFetchData.error ? (
+              <div className="mb-2">{afterFetchData.error}</div>
+            ) : null}
+            {afterFetchData.data ? (
               <div className="mb-2">
                 <div>Success!</div>
-                <StyledLink to={`/post/${state.success.data.id}/`}>
+                <StyledLink to={`/post/${afterFetchData.data.id}/`}>
                   View Post
                 </StyledLink>
               </div>
             ) : null}
-            <Button type="submit" variant="outlined">
+            <Button
+              type="submit"
+              variant="outlined"
+              disabled={formik.isSubmitting}
+            >
               Submit
             </Button>
           </form>
@@ -180,20 +181,18 @@ const CreatePostPage = () => {
   );
 };
 
-const StyledLink = ({ to, children }) => {
-  return (
-    <Box
-      sx={{
-        color: "primary.main",
-        "&:hover": {
-          textDecoration: "underline",
-        },
-      }}
-    >
-      <Link to={to}>{children}</Link>
-    </Box>
-  );
-};
+const StyledLink = ({ to, children }) => (
+  <Box
+    sx={{
+      color: "primary.main",
+      "&:hover": {
+        textDecoration: "underline",
+      },
+    }}
+  >
+    <Link to={to}>{children}</Link>
+  </Box>
+);
 StyledLink.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,

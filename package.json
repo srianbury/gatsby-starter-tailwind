@@ -15,6 +15,7 @@
     "@mui/material": "^5.3.0",
     "@mui/styles": "^5.3.0",
     "aws-amplify": "^4.3.14",
+    "formik": "^2.2.9",
     "gatsby": "^4.4.0",
     "gatsby-plugin-gatsby-cloud": "^4.4.0",
     "gatsby-plugin-image": "^2.4.0",
@@ -30,7 +31,8 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-rte": "^0.16.5",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "yup": "^0.32.11"
   },
   "resolutions": {
     "xstate": "4.28.0"
