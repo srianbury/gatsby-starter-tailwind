@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import { navigate } from "gatsby";
 
-import Layout from "../../components/layout";
+import { Layout } from "../../components/Layout";
 import Seo from "../../components/seo";
 import "@aws-amplify/ui-react/styles.css";
 

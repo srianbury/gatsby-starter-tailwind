@@ -6,7 +6,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import RichTextEditor from "react-rte";
 import { Skeleton, Button, Alert } from "@mui/material";
 import { navigate } from "gatsby";
-import Layout from "../../components/layout";
+import { Layout } from "../../components/Layout";
 import Seo from "../../components/seo";
 import { getPost } from "../../graphql/queries";
 import { deletePost } from "../../graphql/mutations";

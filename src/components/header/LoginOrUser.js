@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import { isMobile } from "react-device-detect";
 import { LoginModalContext } from "../LoginModal";
 import { navigate } from "gatsby-link";
-import { NavDrawerContext } from "../navDrawer";
+import { NavDrawerContext } from "../NavDrawer";
 
 const LoginOrUser = () => {
   const { route } = useAuthenticator(context => [context.route]);

@@ -10,7 +10,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { createPost, updatePost } from "../../graphql/mutations";
 import { getPost } from "../../graphql/queries";
-import Layout from "../../components/layout";
+import { Layout } from "../../components/Layout";
 import Seo from "../../components/seo";
 import { OpenLoginModalButton } from "../../components/header";
 import { getYoutubeVideoId } from "../../utils";

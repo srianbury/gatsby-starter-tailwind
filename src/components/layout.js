@@ -10,8 +10,8 @@ import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 import { isMobile } from "react-device-detect";
 import { Header } from "./header";
-import { LayoutContainer } from "./layoutContainer";
-import { Footer } from "./footer";
+import { LayoutContainer } from "./LayoutContainer";
+import { Footer } from "./Footer";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -43,4 +43,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Layout;
+export { Layout };

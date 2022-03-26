@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { Box } from "@mui/material";
-import { LayoutContainer } from "../layoutContainer";
+import { LayoutContainer } from "../LayoutContainer";
 import { links } from "../../constants/navigation";
 import { HeaderLink } from "./HeaderLink";
 import { LeftTitle } from "./LeftTitle";

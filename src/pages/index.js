@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import { API } from "aws-amplify"; // graphqlOperation
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Box, Skeleton, Button } from "@mui/material";
-import Layout from "../components/layout";
+import { Layout } from "../components/Layout";
 import Seo from "../components/seo";
 import { postsByDate } from "../graphql/queries";
 import { formattedDate } from "../utils";

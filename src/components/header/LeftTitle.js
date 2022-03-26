@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import { HeaderPropTypes } from "./index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { NavDrawer, NavDrawerContext } from "../navDrawer";
+import { NavDrawer, NavDrawerContext } from "../NavDrawer";
 
 const LeftTitle = ({ siteTitle }) => {
   const { openDrawer } = useContext(NavDrawerContext);

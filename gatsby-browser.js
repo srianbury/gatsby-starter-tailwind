@@ -11,7 +11,7 @@ import { LoginModalProvider, LoginModal } from "./src/components/LoginModal";
 import {
   NavDrawer,
   NavDrawerContextProvider,
-} from "./src/components/navDrawer";
+} from "./src/components/NavDrawer";
 import { getTheme } from "./src/styles";
 import "./src/styles/global.css";
 
