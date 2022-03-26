@@ -3,6 +3,9 @@
  * @return {string}
  */
 function domainName(url) {
+  if (url === null || url === undefined) {
+    return null;
+  }
   return url.replace(/.+\/\/|www.|\..+/g, "");
 }
 
@@ -12,6 +15,9 @@ function domainName(url) {
  * @returns {string}
  */
 function queryParam(url, key) {
+  if (url === null || url === undefined) {
+    return null;
+  }
   return new URLSearchParams(url.split("?")[1]).get(key);
 }
 
@@ -32,6 +38,10 @@ function formattedDate(
  * @returns {string|null}
  */
 function getYoutubeVideoId(url) {
+  if (url === null || url === undefined) {
+    return null;
+  }
+
   switch (domainName(url).toLowerCase()) {
     case "youtube":
       return queryParam(url, "v");

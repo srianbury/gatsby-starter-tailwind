@@ -8,4 +8,8 @@ type Post
   title: String!
   body: String!
   source: String
+  youtubeVideoId: String
+  muscles: [String!]!
+  type: String! @index(name: "PostsByDate", queryField: "PostsByDate", sortKeyFields: ["createdAt"])
+  createdAt: String!
 }

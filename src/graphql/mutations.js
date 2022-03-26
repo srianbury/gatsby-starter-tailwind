@@ -11,6 +11,9 @@ export const createPost = /* GraphQL */ `
       title
       body
       source
+      youtubeVideoId
+      muscles
+      type
       createdAt
       updatedAt
       owner
@@ -27,6 +30,9 @@ export const updatePost = /* GraphQL */ `
       title
       body
       source
+      youtubeVideoId
+      muscles
+      type
       createdAt
       updatedAt
       owner
@@ -43,6 +49,9 @@ export const deletePost = /* GraphQL */ `
       title
       body
       source
+      youtubeVideoId
+      muscles
+      type
       createdAt
       updatedAt
       owner

@@ -4,11 +4,14 @@ import PropTypes from "prop-types";
 import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import RichTextEditor from "react-rte";
-import { Skeleton } from "@mui/material";
+import { Skeleton, Button, Alert } from "@mui/material";
+import { navigate } from "gatsby";
 import Layout from "../../components/layout";
 import Seo from "../../components/seo";
 import { getPost } from "../../graphql/queries";
-import { domainName, queryParam, formattedDate } from "../../utils";
+import { deletePost } from "../../graphql/mutations";
+import { formattedDate } from "../../utils";
+import { HOME_TO, toEditPage } from "../../constants/navigation";
 import "./styles.css";
 
 const SinglePostPage = ({ params }) => {
@@ -36,58 +39,133 @@ const SinglePostPage = ({ params }) => {
   return (
     <Layout>
       <Seo title={`Post${post ? ` - ${post.title}` : ""}`} />
-      {post === null ? <PostViewSkeleton /> : <PostView post={post} />}
+      {post === null ? (
+        <PostViewSkeleton />
+      ) : (
+        <PostView post={post} user={user} />
+      )}
     </Layout>
   );
 };
 
-const PostView = ({ post }) => (
+const PostView = ({ post, user }) => (
   <div>
     <div className="flex justify-center text-center">
-      <div>
+      <div className="w-full max-w-md">
         <h2>{post.title}</h2>
         <div>{`${post.owner} • ${formattedDate(post.createdAt)}`}</div>
-        <SourceController source={post.source} />
+        <SourceController youtubeVideoId={post.youtubeVideoId} />
       </div>
     </div>
     <MarkdownViewer
       value={RichTextEditor.createValueFromString(post.body, "markdown")}
     />
+    <DeletePostButton post={post} user={user} />
   </div>
 );
 PostView.propTypes = {
   post: PropTypes.object.isRequired,
+  user: PropTypes.object,
 };
 
-const YOUTUBE_VIDEO_ID_QUERY_PARAM = "v";
-const SourceController = ({ source }) => {
-  if (!source) {
+const DeletePostButton = ({ post, user }) => {
+  const [state, setState] = useState({
+    loading: false,
+    error: false,
+  });
+
+  async function handleDelete() {
+    setState({
+      loading: true,
+      error: false,
+    });
+    try {
+      const result = await API.graphql({
+        query: deletePost,
+        variables: {
+          input: {
+            id: post.id,
+          },
+        },
+        authMode: "AMAZON_COGNITO_USER_POOLS",
+      });
+      if (!result.errors) {
+        navigate(HOME_TO);
+      }
+    } catch (e) {
+      setState({
+        loading: false,
+        error: true,
+      });
+    }
+  }
+
+  function handleEdit() {
+    navigate(toEditPage(post.id));
+  }
+
+  return user && user.username === post.owner ? (
+    <div className="mt-2 flex justify-end">
+      <div>
+        <div className="grid justify-items-end">
+          <div>
+            <Button
+              variant="outlined"
+              onClick={handleEdit}
+              sx={{
+                marginLeft: 1,
+              }}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={handleDelete}
+              disabled={state.loading}
+              loading={state.loading}
+              sx={{
+                marginLeft: 1,
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        </div>
+        {state.error ? (
+          <Alert severity="error" variant="outlined" sx={{ marginTop: 1 }}>
+            An unexpected error occurred.
+          </Alert>
+        ) : null}
+      </div>
+    </div>
+  ) : null;
+};
+DeletePostButton.propTypes = {
+  post: PropTypes.object.isRequired,
+  user: PropTypes.object,
+};
+
+const SourceController = ({ youtubeVideoId }) => {
+  if (!youtubeVideoId) {
     return null;
   }
 
-  const domain = domainName(source).toUpperCase();
-  const videoId = queryParam(source, YOUTUBE_VIDEO_ID_QUERY_PARAM);
-
   return (
-    <div className="mb-1">
-      {domain === "YOUTUBE" && videoId !== null ? (
-        <iframe
-          width="560"
-          height="315"
-          src={`https://www.youtube.com/embed/${videoId}`}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      ) : (
-        source
-      )}
+    <div className="yt-iframe-container mb-2">
+      <iframe
+        className="yt-iframe-responsive-iframe"
+        src={`https://www.youtube.com/embed/${youtubeVideoId}`}
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
     </div>
   );
 };
 SourceController.propTypes = {
-  source: PropTypes.string,
+  youtubeVideoId: PropTypes.string,
 };
 
 const MarkdownViewer = ({ value }) => (

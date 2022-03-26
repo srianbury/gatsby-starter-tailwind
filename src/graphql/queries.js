@@ -8,6 +8,9 @@ export const getPost = /* GraphQL */ `
       title
       body
       source
+      youtubeVideoId
+      muscles
+      type
       createdAt
       updatedAt
       owner
@@ -26,6 +29,42 @@ export const listPosts = /* GraphQL */ `
         title
         body
         source
+        youtubeVideoId
+        muscles
+        type
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const postsByDate = /* GraphQL */ `
+  query PostsByDate(
+    $type: String!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    PostsByDate(
+      type: $type
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        title
+        body
+        source
+        youtubeVideoId
+        muscles
+        type
         createdAt
         updatedAt
         owner

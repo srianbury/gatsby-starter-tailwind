@@ -1,3 +1,15 @@
+## TODO
+- [x] Delete Post
+- [x] Update Post
+- [x] Paginate the Posts
+- [x] Sort results 
+- [ ] Muscle Groups
+  - Primary: Legs, Abdominals, Chest, Back, Arms, Shoulders
+  - Secondary: Calves, Hamstrings, Quadriceps, Glutes, Biceps, Triceps, Forearms
+- [ ] Search
+
+"One or more parameter values were invalid: Type mismatch for key id expected: S actual: NULL (Service: DynamoDb, Status Code: 400, Request ID: 3VH7DBPHG3UE4USBECLJ6UNKR3VV4KQNSO5AEMVJF66Q9ASUAAJG)"
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.com">
