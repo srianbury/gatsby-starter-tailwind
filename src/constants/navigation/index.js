@@ -10,7 +10,7 @@ export const links = [
 ];
 
 export function postToAddress(id) {
-  return `${POST_TO}/${id}/`;
+  return `${POST_TO}${id}/`;
 }
 
 export function toEditPage(id) {
