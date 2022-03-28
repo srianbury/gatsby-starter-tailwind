@@ -1,7 +1,6 @@
 import * as React from "react";
-
-import { Layout } from "../components/Layout";
-import { Seo } from "../components/Seo";
+import { Layout } from "../../Layout";
+import { Seo } from "../../Seo";
 
 const NotFoundPage = () => (
   <Layout>
@@ -11,4 +10,4 @@ const NotFoundPage = () => (
   </Layout>
 );
 
-export default NotFoundPage;
+export { NotFoundPage };

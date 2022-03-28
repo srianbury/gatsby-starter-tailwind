@@ -14,5 +14,5 @@ export function postToAddress(id) {
 }
 
 export function toEditPage(id) {
-  return `${POST}?id=${id}`;
+  return `/${POST}?id=${id}`;
 }
