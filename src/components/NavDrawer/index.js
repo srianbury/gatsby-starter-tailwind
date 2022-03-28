@@ -5,8 +5,11 @@ import { navigate } from "gatsby";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { links } from "../constants/navigation";
-import { HeaderLogoutButton, OpenLoginModalButton } from "./header/LoginOrUser";
+import { navigation } from "../../constants";
+import {
+  HeaderLogoutButton,
+  OpenLoginModalButton,
+} from "../Header/LoginOrUser";
 
 const NavDrawerContext = createContext(false);
 
@@ -56,7 +59,7 @@ const NavDrawer = () => {
               <OpenLoginModalButton />
             </li>
           ) : null}
-          {links.map(link => (
+          {navigation.links.map(link => (
             <DrawerNavItem
               key={link.title}
               to={link.to}

@@ -6,12 +6,12 @@
  */
 
 import * as React from "react";
+import { graphql, useStaticQuery } from "gatsby";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
 import { isMobile } from "react-device-detect";
-import { Header } from "./header";
-import { LayoutContainer } from "./LayoutContainer";
-import { Footer } from "./Footer";
+import { Footer } from "../Footer";
+import { Header } from "../Header";
+import { LayoutContainer } from "../LayoutContainer";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

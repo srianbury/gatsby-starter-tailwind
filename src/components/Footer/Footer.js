@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Box } from "@mui/material";
-import { LayoutContainer } from "./LayoutContainer";
+import { LayoutContainer } from "../LayoutContainer";
 
 const Footer = () => (
   <footer>

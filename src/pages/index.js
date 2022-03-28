@@ -6,7 +6,7 @@ import { API } from "aws-amplify"; // graphqlOperation
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Box, Skeleton, Button } from "@mui/material";
 import { Layout } from "../components/Layout";
-import Seo from "../components/seo";
+import { Seo } from "../components/Seo";
 import { postsByDate } from "../graphql/queries";
 import { formattedDate } from "../utils";
 

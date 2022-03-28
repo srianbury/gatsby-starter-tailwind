@@ -4,7 +4,7 @@ import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import { navigate } from "gatsby";
 
 import { Layout } from "../../components/Layout";
-import Seo from "../../components/seo";
+import { Seo } from "../../components/Seo";
 import "@aws-amplify/ui-react/styles.css";
 
 const Login = () => {

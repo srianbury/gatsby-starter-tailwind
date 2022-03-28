@@ -7,7 +7,7 @@ import RichTextEditor from "react-rte";
 import { Skeleton, Button, Alert } from "@mui/material";
 import { navigate } from "gatsby";
 import { Layout } from "../../components/Layout";
-import Seo from "../../components/seo";
+import { Seo } from "../../components/Seo";
 import { getPost } from "../../graphql/queries";
 import { deletePost } from "../../graphql/mutations";
 import { formattedDate } from "../../utils";

@@ -11,8 +11,8 @@ import * as Yup from "yup";
 import { createPost, updatePost } from "../../graphql/mutations";
 import { getPost } from "../../graphql/queries";
 import { Layout } from "../../components/Layout";
-import Seo from "../../components/seo";
-import { OpenLoginModalButton } from "../../components/header";
+import { Seo } from "../../components/Seo";
+import { OpenLoginModalButton } from "../../components/Header";
 import { getYoutubeVideoId } from "../../utils";
 import { postToAddress } from "../../constants/navigation";
 
