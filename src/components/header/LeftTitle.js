@@ -1,7 +1,7 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 import { useContext } from "react";
 import { Link } from "gatsby";
-import { HeaderPropTypes } from "./index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { NavDrawer, NavDrawerContext } from "../NavDrawer";
@@ -29,6 +29,8 @@ const LeftTitle = ({ siteTitle }) => {
     </div>
   );
 };
+LeftTitle.propTypes = {
+  siteTitle: PropTypes.string.isRequired,
+};
 
-LeftTitle.propTypes = HeaderPropTypes;
 export { LeftTitle };

@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { navigate } from "gatsby";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import { useAuthenticator } from "@aws-amplify/ui-react";
 import { navigation } from "../../constants";
 import {
   HeaderLogoutButton,
@@ -39,7 +38,6 @@ const NavDrawerContextProvider = ({ children }) => {
 
 const NavDrawer = () => {
   const { open, closeDrawer } = useContext(NavDrawerContext);
-  const { route } = useAuthenticator(context => [context.route]);
 
   function drawerNavigate(to) {
     navigate(to);
@@ -54,11 +52,9 @@ const NavDrawer = () => {
         }}
       >
         <ul className="p-4">
-          {route !== "authenticated" ? (
-            <li className="pb-4">
-              <OpenLoginModalButton />
-            </li>
-          ) : null}
+          <li className="pb-4">
+            <OpenLoginModalButton />
+          </li>
           {navigation.links.map(link => (
             <DrawerNavItem
               key={link.title}
@@ -67,11 +63,9 @@ const NavDrawer = () => {
               drawerNavigate={drawerNavigate}
             />
           ))}
-          {route === "authenticated" ? (
-            <li className="pb-4">
-              <HeaderLogoutButton />
-            </li>
-          ) : null}
+          <li className="pb-4">
+            <HeaderLogoutButton />
+          </li>
         </ul>
       </Box>
     </Drawer>
