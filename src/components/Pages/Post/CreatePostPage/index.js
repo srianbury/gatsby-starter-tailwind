@@ -12,7 +12,7 @@ import { createPost, updatePost } from "../../../../graphql/mutations";
 import { getPost } from "../../../../graphql/queries";
 import { Layout } from "../../../Layout";
 import { Seo } from "../../../Seo";
-import { OpenLoginModalButton } from "../../../Header";
+import { OpenLoginModalButton } from "../../../Header/OpenLoginModalButton";
 import { getYoutubeVideoId } from "../../../../utils";
 import { navigation } from "../../../../constants";
 

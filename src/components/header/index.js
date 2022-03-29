@@ -5,7 +5,8 @@ import { LayoutContainer } from "../LayoutContainer";
 import { navigation } from "../../constants";
 import { HeaderLink } from "./HeaderLink";
 import { LeftTitle } from "./LeftTitle";
-import { HeaderLogoutButton, OpenLoginModalButton } from "./LoginOrUser";
+import { OpenLoginModalButton } from "./OpenLoginModalButton";
+import { HeaderLogoutButton } from "./HeaderLogoutButton";
 
 const Header = ({ siteTitle }) => (
   <header>
@@ -33,4 +34,4 @@ Header.propTypes = {
   siteTitle: PropTypes.string.isRequired,
 };
 
-export { Header, OpenLoginModalButton };
+export { Header };

@@ -7,21 +7,6 @@ import { LoginModalContext } from "../LoginModal";
 import { navigate } from "gatsby-link";
 import { NavDrawerContext } from "../NavDrawer";
 
-const HeaderLogoutButton = () => {
-  const { route, user, signOut } = useAuthenticator(context => [
-    context.route,
-    context.user,
-  ]);
-
-  return route === "authenticated" ? (
-    <Button
-      onClick={signOut}
-      variant="outlined"
-    >{`${user.username}: Log Out`}</Button>
-  ) : null;
-};
-HeaderLogoutButton.propTypes = {};
-
 const OpenLoginModalButton = () => {
   const { route } = useAuthenticator(context => [context.route]);
   const { openModal } = useContext(LoginModalContext);
@@ -44,4 +29,4 @@ const OpenLoginModalButton = () => {
 };
 OpenLoginModalButton.propTypes = {};
 
-export { HeaderLogoutButton, OpenLoginModalButton };
+export { OpenLoginModalButton };
