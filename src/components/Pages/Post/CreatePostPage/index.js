@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { Link, navigate } from "gatsby";
+import { navigate } from "gatsby";
 import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Button, TextField, Box, FormHelperText } from "@mui/material";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types"; TODO
 import RichTextEditor from "react-rte";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -215,23 +215,6 @@ const CreatePostPage = ({ location }) => {
       )}
     </Layout>
   );
-};
-
-const StyledLink = ({ to, children }) => (
-  <Box
-    sx={{
-      color: "primary.main",
-      "&:hover": {
-        textDecoration: "underline",
-      },
-    }}
-  >
-    <Link to={to}>{children}</Link>
-  </Box>
-);
-StyledLink.propTypes = {
-  to: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
 };
 
 export { CreatePostPage };

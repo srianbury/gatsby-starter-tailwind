@@ -3,7 +3,7 @@
  * @return {string}
  */
 function domainName(url) {
-  if (url === null || url === undefined) {
+  if (!url) {
     return null;
   }
   return url.replace(/.+\/\/|www.|\..+/g, "");

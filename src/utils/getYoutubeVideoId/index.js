@@ -5,7 +5,7 @@ import { domainName, queryParam, getYoutubeIdFromShortUrl } from "..";
  * @returns {string|null}
  */
 function getYoutubeVideoId(url) {
-  if (url === null || url === undefined) {
+  if (!url) {
     return null;
   }
 

@@ -41,8 +41,15 @@
     "xstate": "4.28.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
     "autoprefixer": "^10.4.1",
+    "babel-jest": "^27.5.1",
+    "babel-preset-gatsby": "^2.11.1",
     "gatsby-plugin-postcss": "^5.4.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.5.1",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.11"
@@ -58,7 +65,7 @@
     "start": "gatsby develop --host=0.0.0.0",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "jest --config ./jest.config.json"
   },
   "repository": {
     "type": "git",
