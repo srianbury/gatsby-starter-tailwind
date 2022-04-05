@@ -43,9 +43,10 @@ const CreatePostPage = ({ location }) => {
           const data = result.data.getPost;
           setPost({
             id: data.id,
+            muscles: data.muscles,
+            source: data.source,
             title: data.title,
             body: RichTextEditor.createValueFromString(data.body, "markdown"),
-            source: data.source,
           });
           console.log({ data });
           setValidId(true);

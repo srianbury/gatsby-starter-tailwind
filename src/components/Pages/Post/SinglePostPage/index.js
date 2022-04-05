@@ -12,6 +12,7 @@ import { getPost } from "../../../../graphql/queries";
 import { deletePost } from "../../../../graphql/mutations";
 import { formattedDate } from "../../../../utils";
 import { navigation } from "../../../../constants";
+import { SelectedMuscleChips } from "../PostForm/MuscleSelect";
 import "./styles.css";
 
 const SinglePostPage = ({ params }) => {
@@ -57,6 +58,7 @@ const PostView = ({ post, user }) => (
         <SourceController youtubeVideoId={post.youtubeVideoId} />
       </div>
     </div>
+    <SelectedMuscleChips muscles={post.muscles} />
     <MarkdownViewer
       value={RichTextEditor.createValueFromString(post.body, "markdown")}
     />
@@ -123,7 +125,6 @@ const DeletePostButton = ({ post, user }) => {
               color="error"
               onClick={handleDelete}
               disabled={state.loading}
-              loading={state.loading}
               sx={{
                 marginLeft: 1,
               }}

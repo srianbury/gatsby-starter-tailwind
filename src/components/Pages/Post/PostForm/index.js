@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import RichTextEditor from "react-rte";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { MuscleSelect, formatMuscles } from "./MuscleSelect";
 import { createPost, updatePost } from "../../../../graphql/mutations";
 import { getYoutubeVideoId } from "../../../../utils";
 import { navigation } from "../../../../constants";
@@ -38,6 +39,9 @@ const PostForm = ({ post }) => {
     }),
     onSubmit: handleSubmit,
   });
+  const [selectedMuscles, setSelectedMuscles] = useState(
+    post ? formatMuscles(post.muscles) : {}
+  );
 
   function handleRichTextInputChange(value) {
     formik.setFieldValue("body", value);
@@ -59,7 +63,7 @@ const PostForm = ({ post }) => {
             body: values.body.toString("markdown"),
             youtubeVideoId: getYoutubeVideoId(values.source),
             type: "Post",
-            muscles: [],
+            muscles: Object.keys(selectedMuscles),
           },
         },
         authMode: "AMAZON_COGNITO_USER_POOLS",
@@ -110,6 +114,19 @@ const PostForm = ({ post }) => {
           display: "block",
         }}
       />
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "sm",
+          display: "block",
+          marginBottom: 1,
+        }}
+      >
+        <MuscleSelect
+          selectedMuscles={selectedMuscles}
+          setSelectedMuscles={setSelectedMuscles}
+        />
+      </Box>
       <div className="mb-2">
         <Box
           sx={{

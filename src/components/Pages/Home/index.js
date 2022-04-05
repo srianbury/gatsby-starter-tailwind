@@ -121,7 +121,6 @@ const ListPosts = () => {
             variant="outlined"
             onClick={readMore}
             disabled={readingMore || !posts.data.nextToken}
-            loading={readingMore}
           >
             {posts.data.nextToken ? "Load More" : "No more Posts"}
           </Button>
