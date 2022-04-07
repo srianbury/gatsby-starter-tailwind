@@ -62,7 +62,6 @@ const PostForm = ({ post }) => {
             ...(post ? { id: post.id } : {}),
             body: values.body.toString("markdown"),
             youtubeVideoId: getYoutubeVideoId(values.source),
-            type: "Post",
             muscles: Object.keys(selectedMuscles),
           },
         },

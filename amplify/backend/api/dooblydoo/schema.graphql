@@ -11,7 +11,6 @@ type Post
   source: String
   youtubeVideoId: String
   muscles: [String!]!
-  type: String! @index(name: "PostsByDate", queryField: "PostsByDate", sortKeyFields: ["createdAt"]) // TODO remove this
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }

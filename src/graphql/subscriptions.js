@@ -10,7 +10,6 @@ export const onCreatePost = /* GraphQL */ `
       source
       youtubeVideoId
       muscles
-      type
       createdAt
       updatedAt
       owner
@@ -26,7 +25,6 @@ export const onUpdatePost = /* GraphQL */ `
       source
       youtubeVideoId
       muscles
-      type
       createdAt
       updatedAt
       owner
@@ -42,7 +40,6 @@ export const onDeletePost = /* GraphQL */ `
       source
       youtubeVideoId
       muscles
-      type
       createdAt
       updatedAt
       owner
