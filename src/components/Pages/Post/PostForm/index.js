@@ -71,7 +71,7 @@ const PostForm = ({ post }) => {
       console.log({ result });
       navigate(
         navigation.postToAddress(
-          post ? result.data.updatePost.id : result.data.createPost.id
+          result.data[post ? 'updatePost' : 'createPost'].id
         )
       );
     } catch (e) {
