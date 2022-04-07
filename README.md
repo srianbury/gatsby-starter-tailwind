@@ -7,6 +7,8 @@
   - Primary: Legs, Abdominals, Chest, Back, Arms, Shoulders
   - Secondary: Calves, Hamstrings, Quadriceps, Glutes, Biceps, Triceps, Forearms
 - [ ] Search
+  - [x] 1. Swap postsByDate with searchPosts
+  - [ ] 2. Remove `type` from schema and anywhere it's used in the code
 
 "One or more parameter values were invalid: Type mismatch for key id expected: S actual: NULL (Service: DynamoDb, Status Code: 400, Request ID: 3VH7DBPHG3UE4USBECLJ6UNKR3VV4KQNSO5AEMVJF66Q9ASUAAJG)"
 

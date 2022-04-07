@@ -7,7 +7,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Box, Skeleton, Button } from "@mui/material";
 import { Layout } from "../../Layout";
 import { Seo } from "../../Seo";
-import { postsByDate } from "../../../graphql/queries";
+import { searchPosts } from "../../../graphql/queries";
 import { formattedDate } from "../../../utils";
 
 const PAGINATION_LIMIT = 1;
@@ -35,10 +35,9 @@ const ListPosts = () => {
       try {
         setPosts(INIT_POST_STATE);
         const result = await API.graphql({
-          query: postsByDate,
+          query: searchPosts,
           variables: {
-            type: "Post",
-            sortDirection: "DESC",
+            sort: {direction: 'desc', field: 'createdAt' },
             limit: PAGINATION_LIMIT,
           },
           authMode: user ? "AMAZON_COGNITO_USER_POOLS" : "AWS_IAM",
@@ -46,14 +45,14 @@ const ListPosts = () => {
         console.log({ result });
         setPosts(cur => ({
           ...cur,
-          data: result.data.PostsByDate,
+          data: result.data.searchPosts,
         }));
       } catch (e) {
         setPosts(cur => ({
           ...cur,
           error: "An unexpected error occurred.",
         }));
-        console.log("postsByDate", { e });
+        console.log("searchPosts", { e });
       }
     }
     read();
@@ -63,10 +62,9 @@ const ListPosts = () => {
     try {
       setReadingMore(true);
       const result = await API.graphql({
-        query: postsByDate,
+        query: searchPosts,
         variables: {
-          type: "Post",
-          sortDirection: "DESC",
+          sort: {direction: 'desc', field: 'createdAt' },
           limit: PAGINATION_LIMIT,
           nextToken: posts.data.nextToken,
         },
@@ -76,8 +74,8 @@ const ListPosts = () => {
       setPosts(cur => ({
         ...cur,
         data: {
-          items: [...cur.data.items, ...result.data.PostsByDate.items],
-          nextToken: result.data.PostsByDate.nextToken,
+          items: [...cur.data.items, ...result.data.searchPosts.items],
+          nextToken: result.data.searchPosts.nextToken,
         },
       }));
     } catch (e) {
@@ -85,7 +83,7 @@ const ListPosts = () => {
         ...cur,
         error: "An unexpected error occurred.",
       }));
-      console.log("postsByDate", { e });
+      console.log("searchPosts", { e });
     } finally {
       setReadingMore(false);
     }
