@@ -13,7 +13,6 @@ import { deletePost } from "../../../../graphql/mutations";
 import { formattedDate } from "../../../../utils";
 import { navigation } from "../../../../constants";
 import { SelectedMuscleChips } from "../PostForm/MuscleSelect";
-import "./styles.css";
 
 const SinglePostPage = ({ params }) => {
   const { user } = useAuthenticator(context => [context.user]);

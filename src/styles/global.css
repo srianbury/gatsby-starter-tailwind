@@ -27,10 +27,10 @@ h2 {
   font-family: "Roboto","Helvetica","Arial",sans-serif
 }
 
-.markdown-viewonly .RichTextEditor__root___2QXK- .RichTextEditor__editor___1QqIU .DraftEditor-root .DraftEditor-editorContainer .public-DraftEditor-content {
+/* .markdown-viewonly .RichTextEditor__root___2QXK- .RichTextEditor__editor___1QqIU .DraftEditor-root .DraftEditor-editorContainer .public-DraftEditor-content {
   margin: 0;
-  padding: 0;
-}
+  padding: 2px;
+} */
 
 .yt-iframe-container {
   position: relative;
