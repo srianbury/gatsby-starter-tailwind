@@ -3,6 +3,7 @@
 
 type Post
   @model
+  @searchable
   @auth(rules: [{ allow: public, operations: [read], provider: iam }, { allow: owner }]) {
   id: ID!
   title: String!
@@ -11,5 +12,6 @@ type Post
   youtubeVideoId: String
   muscles: [String!]!
   type: String! @index(name: "PostsByDate", queryField: "PostsByDate", sortKeyFields: ["createdAt"])
-  createdAt: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
 }
