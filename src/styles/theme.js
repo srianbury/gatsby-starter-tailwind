@@ -1,8 +1,10 @@
 import { createTheme } from "@mui/material/styles";
+import { blueGrey } from "@mui/material/colors";
 
 const lightTheme = createTheme({
   palette: {
     mode: "light",
+    secondary: blueGrey,
   },
 });
 

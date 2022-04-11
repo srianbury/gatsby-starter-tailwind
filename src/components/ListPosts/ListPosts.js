@@ -7,6 +7,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Box, Skeleton, Button, Tooltip } from "@mui/material";
 import { searchPosts } from "../../graphql/queries";
 import { formattedDate } from "../../utils";
+import { navigation } from "../../constants";
 
 const PAGINATION_LIMIT = 5;
 const INIT_POST_STATE = {
@@ -155,7 +156,7 @@ StyledHeader.propTypes = {
 
 const PostView = ({ post }) => (
   <div className="mb-4">
-    <Link to={`/post/${post.id}/`}>
+    <Link to={`/${navigation.POST}/${post.id}/`}>
       <img
         className="w-full"
         src={`https://img.youtube.com/vi/${
@@ -165,7 +166,7 @@ const PostView = ({ post }) => (
       />
     </Link>
     <div className="m-1">
-      <StyledHeader to={`/post/${post.id}/`}>
+      <StyledHeader to={`/${navigation.POST}/${post.id}/`}>
         <Tooltip title={post.title} placement="bottom" enterDelay={500}>
           <h4 className="break-words line-clamp-2">{post.title}</h4>
         </Tooltip>

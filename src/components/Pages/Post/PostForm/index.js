@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import RichTextEditor from "react-rte";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Link } from "gatsby";
 import { MuscleSelect, formatMuscles } from "./MuscleSelect";
 import { createPost, updatePost } from "../../../../graphql/mutations";
 import { getYoutubeVideoId } from "../../../../utils";
@@ -70,7 +71,7 @@ const PostForm = ({ post }) => {
       console.log({ result });
       navigate(
         navigation.postToAddress(
-          result.data[post ? 'updatePost' : 'createPost'].id
+          result.data[post ? "updatePost" : "createPost"].id
         )
       );
     } catch (e) {
@@ -155,6 +156,17 @@ const PostForm = ({ post }) => {
         ) : null}
       </div>
       {error ? <div className="mb-2">{error}</div> : null}
+      {post ? (
+        <Button
+          sx={{ mr: 1 }}
+          variant="outlined"
+          component={Link}
+          to={`/${navigation.POST}/${post.id}/`}
+          color="secondary"
+        >
+          Cancel
+        </Button>
+      ) : null}
       <Button type="submit" variant="outlined" disabled={formik.isSubmitting}>
         {post ? "Update" : "Submit"}
       </Button>
