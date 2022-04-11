@@ -1,14 +1,38 @@
 ## TODO
+
+- [x] Add Search Bar
+  - [x] On Search, go to /explore?search_query=<text from user>
+  - [ ] A bug: `Efron's` does not return the correct results
+- [ ] Add a cancel button to the Update form
+- [ ] Add Global and Page Error Boundaries
+- [ ] Deploy app
+- [ ] Image vs Link style Post
+- [ ] Fix the styling on the RTE when in view mode
+  - Font is wrong
+  - Double digit numbers don't work
+
+## IDEAS
+
+- [ ] Follow people
+  - [ ] With this in place we would update the home page to show posts by the people they follow
+- [ ] Like a post
+- [ ] Set a workout for tomorrow/next day
+  - This post would show at the top of the website on that day
+- [ ] Chat/Connect with coaches
+- [ ] Sell Workouts
+
+# DONE
+
 - [x] Delete Post
 - [x] Update Post
 - [x] Paginate the Posts
-- [x] Sort results 
-- [ ] Muscle Groups
+- [x] Sort results
+- [x] Muscle Groups
   - Primary: Legs, Abdominals, Chest, Back, Arms, Shoulders
   - Secondary: Calves, Hamstrings, Quadriceps, Glutes, Biceps, Triceps, Forearms
-- [ ] Search
+- [x] Search
   - [x] 1. Swap postsByDate with searchPosts
-  - [ ] 2. Remove `type` from schema and anywhere it's used in the code
+  - [x] 2. Remove `type` from schema and anywhere it's used in the code
 
 "One or more parameter values were invalid: Type mismatch for key id expected: S actual: NULL (Service: DynamoDb, Status Code: 400, Request ID: 3VH7DBPHG3UE4USBECLJ6UNKR3VV4KQNSO5AEMVJF66Q9ASUAAJG)"
 
@@ -27,6 +51,7 @@ Kick off your project with this default boilerplate. This starter ships with the
 _Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
 
 ## Features
+
 1. Styled with Tailwind CSS
 2. Responsive header with left navigation drawer
 3. Header items are vertically aligned

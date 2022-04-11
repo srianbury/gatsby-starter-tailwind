@@ -18,6 +18,11 @@ h2 {
   font-weight: bold;
 }
 
+h4 {
+  display: block;
+  font-weight: bold;
+}
+
 .mobile-fix-100vh {
   min-height: -webkit-fill-available;
 }
