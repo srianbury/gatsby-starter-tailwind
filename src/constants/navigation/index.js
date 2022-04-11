@@ -1,4 +1,5 @@
 export const POST = "post";
+export const SEARCH = "search";
 
 export const HOME_TO = "/";
 export const POST_TO = `/${POST}/`;
