@@ -1,7 +1,7 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
+  theme: {},
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
+};

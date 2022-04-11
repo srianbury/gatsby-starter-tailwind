@@ -1,6 +1,6 @@
 import * as React from "react";
-import Layout from "../components/layout";
-import Seo from "../components/seo";
+import { Layout } from "../../Layout";
+import { Seo } from "../../Seo";
 
 const About = () => (
   <Layout>
@@ -12,4 +12,4 @@ const About = () => (
   </Layout>
 );
 
-export default About;
+export { About };

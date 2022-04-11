@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "dooblydoo",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "C:\\Users\\rsunb\\OneDrive\\Documents\\Github\\app-starter\\client\\amplify\\backend\\api\\dooblydoo\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "AWS_IAM"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authdooblydood47829cc"
+      }
+    ]
+  }
+}

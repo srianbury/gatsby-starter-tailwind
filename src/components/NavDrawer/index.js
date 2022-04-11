@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import { navigate } from "gatsby";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import { links } from "../constants/navigation";
+import { navigation } from "../../constants";
+import { OpenLoginModalButton } from "../Header/OpenLoginModalButton";
+import { HeaderLogoutButton } from "../Header/HeaderLogoutButton";
 
 const NavDrawerContext = createContext(false);
 
@@ -48,7 +50,10 @@ const NavDrawer = () => {
         }}
       >
         <ul className="p-4">
-          {links.map(link => (
+          <li className="pb-4">
+            <OpenLoginModalButton />
+          </li>
+          {navigation.links.map(link => (
             <DrawerNavItem
               key={link.title}
               to={link.to}
@@ -56,6 +61,9 @@ const NavDrawer = () => {
               drawerNavigate={drawerNavigate}
             />
           ))}
+          <li className="pb-4">
+            <HeaderLogoutButton />
+          </li>
         </ul>
       </Box>
     </Drawer>
@@ -64,11 +72,7 @@ const NavDrawer = () => {
 
 const DrawerNavItem = ({ to, title, drawerNavigate }) => (
   <li className="cursor-pointer pb-4">
-    <button
-      type="button"
-      className="font-bold"
-      onClick={() => drawerNavigate(to)}
-    >
+    <button type="button" onClick={() => drawerNavigate(to)}>
       {title}
     </button>
   </li>
