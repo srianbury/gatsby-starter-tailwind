@@ -3,8 +3,8 @@
 - [x] Add Search Bar
   - [x] On Search, go to /explore?search_query=<text from user>
   - [ ] A bug: `Efron's` does not return the correct results
-- [ ] Add a cancel button to the Update form
-- [ ] Add Global and Page Error Boundaries
+- [x] Add a cancel button to the Update form
+- [ ][next] Add Global and Page Error Boundaries
 - [ ] Deploy app
 - [ ] Image vs Link style Post
 - [ ] Fix the styling on the RTE when in view mode
