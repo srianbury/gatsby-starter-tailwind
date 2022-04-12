@@ -12,6 +12,7 @@ import { isMobile } from "react-device-detect";
 import { Footer } from "../Footer";
 import { Header } from "../Header";
 import { LayoutContainer } from "../LayoutContainer";
+import { PageErrorBoundry } from "../ErrorBoundary";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -32,7 +33,9 @@ const Layout = ({ children }) => {
     >
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <main className="mb-auto">
-        <LayoutContainer>{children}</LayoutContainer>
+        <LayoutContainer>
+          <PageErrorBoundry>{children} </PageErrorBoundry>
+        </LayoutContainer>
       </main>
       <Footer />
     </div>

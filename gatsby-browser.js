@@ -1,10 +1,12 @@
 import * as React from "react";
 import { useMemo } from "react";
 import { isMobile } from "react-device-detect";
-import Amplify from "aws-amplify";
+import { Amplify } from "aws-amplify";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, useMediaQuery } from "@mui/material";
+import * as Sentry from "@sentry/react";
+import { BrowserTracing } from "@sentry/tracing";
 
 import awsExports from "./src/aws-exports";
 import { LoginModalProvider, LoginModal } from "./src/components/LoginModal";
@@ -13,7 +15,18 @@ import {
   NavDrawerContextProvider,
 } from "./src/components/NavDrawer";
 import { getTheme } from "./src/styles";
+import { GlobalErrorBoundry } from "./src/components/ErrorBoundary";
 import "./src/styles/global.css";
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  integrations: [new BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
 
 Amplify.configure(awsExports);
 
@@ -38,13 +51,15 @@ const Themer = ({ children }) => {
 
 // context providers here
 const wrapRootElement = ({ element }) => (
-  <Authenticator.Provider>
-    <NavDrawerContextProvider>
-      <LoginModalProvider>
-        <Authenticated>{element}</Authenticated>
-      </LoginModalProvider>
-    </NavDrawerContextProvider>
-  </Authenticator.Provider>
+  <GlobalErrorBoundry>
+    <Authenticator.Provider>
+      <NavDrawerContextProvider>
+        <LoginModalProvider>
+          <Authenticated>{element}</Authenticated>
+        </LoginModalProvider>
+      </NavDrawerContextProvider>
+    </Authenticator.Provider>
+  </GlobalErrorBoundry>
 );
 
 const Authenticated = ({ children }) => {
