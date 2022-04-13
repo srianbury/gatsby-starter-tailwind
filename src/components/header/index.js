@@ -8,6 +8,7 @@ import { LeftTitle } from "./LeftTitle";
 import { OpenLoginModalButton } from "./OpenLoginModalButton";
 import { HeaderLogoutButton } from "./HeaderLogoutButton";
 import { SearchBar } from "./SearchBar";
+import { breakpoint } from "./common";
 
 const Header = ({ siteTitle }) => (
   <header>
@@ -15,10 +16,10 @@ const Header = ({ siteTitle }) => (
       <LayoutContainer>
         <div className="flex justify-between">
           <LeftTitle siteTitle={siteTitle} />
-          <div className="w-1/2 place-self-center">
+          <div className={`w-full place-self-center ${breakpoint}:w-1/2`}>
             <SearchBar />
           </div>
-          <div className="hidden place-self-center md:block">
+          <div className={`hidden place-self-center ${breakpoint}:block`}>
             {navigation.links.map(link => (
               <span key={link.title} className="pl-2">
                 <HeaderLink to={link.to} title={link.title} />

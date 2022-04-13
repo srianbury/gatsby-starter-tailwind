@@ -2,26 +2,29 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { Link } from "gatsby";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import { NavDrawer, NavDrawerContext } from "../NavDrawer";
+import { breakpoint } from "./common";
 
 const LeftTitle = ({ siteTitle }) => {
   const { openDrawer } = useContext(NavDrawerContext);
 
   return (
-    <div className="align-middle md:block">
-      <div className="inline align-middle md:hidden">
+    <div className={`align-middle ${breakpoint}:block`}>
+      <div className={`inline-block align-middle ${breakpoint}:hidden`}>
         <button
           // className="mr-1 p-1 rounded border-2 border-solid border-black"
           className="mr-2 py-1 pr-1"
           onClick={openDrawer}
         >
-          <FontAwesomeIcon icon={faBars} size="lg" />
+          <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+            <MenuIcon fontSize="large" />
+          </IconButton>
         </button>
         <NavDrawer />
       </div>
-      <div className="inline">
+      <div className={`hidden ${breakpoint}:inline`}>
         <h1 className="inline align-middle">
           <Link to="/">{siteTitle}</Link>
         </h1>
