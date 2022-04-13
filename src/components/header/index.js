@@ -16,7 +16,7 @@ const Header = ({ siteTitle }) => (
       <LayoutContainer>
         <div className="flex justify-between">
           <LeftTitle siteTitle={siteTitle} />
-          <div className={`w-full place-self-center ${breakpoint}:w-1/2`}>
+          <div className={`w-1/2 place-self-center`}>
             <SearchBar />
           </div>
           <div className={`hidden place-self-center ${breakpoint}:block`}>

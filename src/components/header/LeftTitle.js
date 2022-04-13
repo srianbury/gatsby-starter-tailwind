@@ -19,12 +19,12 @@ const LeftTitle = ({ siteTitle }) => {
           onClick={openDrawer}
         >
           <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-            <MenuIcon fontSize="large" />
+            <MenuIcon />
           </IconButton>
         </button>
         <NavDrawer />
       </div>
-      <div className={`hidden ${breakpoint}:inline`}>
+      <div className="inline">
         <h1 className="inline align-middle">
           <Link to="/">{siteTitle}</Link>
         </h1>
