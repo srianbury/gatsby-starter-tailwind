@@ -5,9 +5,10 @@ import { Seo } from "../../Seo";
 const About = () => (
   <Layout>
     <Seo title="About" />
-    <h1>Hi from the second page</h1>
+    <h1>About</h1>
     <p>
-      This page is not scrollable, but the footer should still be at the bottom.
+      This is a platform that provides a place and community to find and share
+      workouts.
     </p>
   </Layout>
 );

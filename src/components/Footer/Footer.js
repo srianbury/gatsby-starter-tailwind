@@ -1,16 +1,16 @@
 import * as React from "react";
 import { Box } from "@mui/material";
 import { LayoutContainer } from "../LayoutContainer";
+import { HeaderLink } from "../Header/HeaderLink";
+import { navigation } from "../../constants";
 
 const Footer = () => (
   <footer>
     <Box sx={{ borderTop: 1 }}>
       <LayoutContainer>
-        <>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </>
+        <span className="pl-2">
+          <HeaderLink to={navigation.ABOUT_TO} title={navigation.ABOUT_TITLE} />
+        </span>
       </LayoutContainer>
     </Box>
   </footer>
