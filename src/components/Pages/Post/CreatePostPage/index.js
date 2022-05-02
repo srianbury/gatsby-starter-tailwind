@@ -6,7 +6,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { getPost } from "../../../../graphql/queries";
 import { Layout } from "../../../Layout";
 import { Seo } from "../../../Seo";
-import { OpenLoginModalButton } from "../../../Header/OpenLoginModalButton";
+import { OpenLoginModalButton } from "../../../Headerr/OpenLoginModalButton";
 import { PostForm } from "..";
 
 const CreatePostPage = ({ location }) => {

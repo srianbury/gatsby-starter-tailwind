@@ -10,7 +10,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import PropTypes from "prop-types";
 import { isMobile } from "react-device-detect";
 import { Footer } from "../Footer";
-import { Header } from "../Header";
+import { Header } from "../Headerr";
 import { LayoutContainer } from "../LayoutContainer";
 import { PageErrorBoundry } from "../ErrorBoundary";
 

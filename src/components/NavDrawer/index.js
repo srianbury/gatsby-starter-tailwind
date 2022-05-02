@@ -5,8 +5,8 @@ import { navigate } from "gatsby";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import { navigation } from "../../constants";
-import { OpenLoginModalButton } from "../Header/OpenLoginModalButton";
-import { HeaderLogoutButton } from "../Header/HeaderLogoutButton";
+import { OpenLoginModalButton } from "../Headerr/OpenLoginModalButton";
+import { HeaderLogoutButton } from "../Headerr/HeaderLogoutButton";
 
 const NavDrawerContext = createContext(false);
 
