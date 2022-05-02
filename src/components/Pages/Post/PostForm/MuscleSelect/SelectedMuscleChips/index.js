@@ -14,7 +14,7 @@ const SelectedMuscleChips = ({ muscles, removeMuscle }) => {
           key={muscle}
           label={muscle}
           variant="outlined"
-          sx={{ margin: 0.5 }}
+          sx={{ mr: 0.5, mb: 0.5 }}
           onClick={removeMuscle ? () => removeMuscle(muscle) : undefined}
         />
       ))}

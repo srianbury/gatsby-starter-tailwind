@@ -5,8 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "@aws-amplify/ui": "^3.0.12",
-    "@aws-amplify/ui-react": "^2.3.0",
+    "@aws-amplify/ui-react": "2.3.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -34,15 +33,10 @@
     "react-device-detect": "^2.1.2",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-lazily": "^0.9.1",
     "react-rte": "^0.16.5",
     "styled-components": "^5.3.3",
     "yup": "^0.32.11"
-  },
-  "resolutions": {
-    "xstate": "4.28.0"
-  },
-  "overrides": {
-    "xstate": "4.28.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
