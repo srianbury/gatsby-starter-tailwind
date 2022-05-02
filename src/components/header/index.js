@@ -1,7 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { Box } from "@mui/material";
-import { lazily } from "react-lazily";
 import { LayoutContainer } from "../LayoutContainer";
 import { navigation } from "../../constants";
 import { HeaderLink } from "./HeaderLink";

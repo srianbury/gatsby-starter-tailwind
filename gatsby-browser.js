@@ -6,7 +6,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, useMediaQuery } from "@mui/material";
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
-import { lazily } from "react-lazily";
 import awsExports from "./src/aws-exports";
 import { LoginModal } from "./src/components/LoginModal";
 import { NavDrawer } from "./src/components/NavDrawer";
