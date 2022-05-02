@@ -9,21 +9,9 @@ import * as Yup from "yup";
 import { Link } from "gatsby";
 import { MuscleSelect, formatMuscles } from "./MuscleSelect";
 import { createPost, updatePost } from "../../../../graphql/mutations";
-import { getYoutubeVideoId, isSSR } from "../../../../utils";
+import { getYoutubeVideoId } from "../../../../utils";
 import { navigation } from "../../../../constants";
 
-const toolbarConfig = {
-  display: ["INLINE_STYLE_BUTTONS", "BLOCK_TYPE_BUTTONS"],
-  INLINE_STYLE_BUTTONS: [
-    { label: "Bold", style: "BOLD" },
-    { label: "Italic", style: "ITALIC" },
-    { label: "Strikethrough", style: "STRIKETHROUGH" },
-  ],
-  BLOCK_TYPE_BUTTONS: [
-    { label: "UL", style: "unordered-list-item" },
-    { label: "OL", style: "ordered-list-item" },
-  ],
-};
 const POST_FORM_INITIAL_VALUES = {
   title: "",
   body: "",
@@ -42,10 +30,6 @@ const PostForm = ({ post }) => {
   const [selectedMuscles, setSelectedMuscles] = useState(
     post ? formatMuscles(post.muscles) : {}
   );
-
-  function handleRichTextInputChange(value) {
-    formik.setFieldValue("body", value);
-  }
 
   async function handleSubmit(values, { setSubmitting, setFieldError }) {
     try {

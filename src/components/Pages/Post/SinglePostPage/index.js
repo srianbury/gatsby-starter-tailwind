@@ -10,10 +10,9 @@ import { Layout } from "../../../Layout";
 import { Seo } from "../../../Seo";
 import { getPost } from "../../../../graphql/queries";
 import { deletePost } from "../../../../graphql/mutations";
-import { formattedDate, isSSR } from "../../../../utils";
+import { formattedDate } from "../../../../utils";
 import { navigation } from "../../../../constants";
 import { SelectedMuscleChips } from "../PostForm/MuscleSelect";
-import { margin } from "@mui/system";
 
 const SinglePostPage = ({ params }) => {
   const { user } = useAuthenticator(context => [context.user]);
