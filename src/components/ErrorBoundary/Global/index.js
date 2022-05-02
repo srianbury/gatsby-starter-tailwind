@@ -7,7 +7,10 @@ const GlobalErrorBoundry = ({ children }) => {
   }
   return (
     <Sentry.ErrorBoundary
-      fallback={<div>Global Error Catch.</div>}
+      fallback={({ error }) => {
+        console.log({ error });
+        return <div>Global Error Catch.</div>;
+      }}
       beforeCapture={handleBeforeCapture}
     >
       {children}

@@ -5,14 +5,14 @@ import { Link } from "gatsby";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavDrawer, NavDrawerContext } from "../NavDrawer";
-import { breakpoint } from "./common";
+// import { breakpoint } from "./common";
 
 const LeftTitle = ({ siteTitle }) => {
   const { openDrawer } = useContext(NavDrawerContext);
 
   return (
-    <div className={`align-middle ${breakpoint}:block`}>
-      <div className={`inline-block align-middle ${breakpoint}:hidden`}>
+    <div className={`align-middle md:block`}>
+      <div className={`inline align-middle md:hidden`}>
         <button
           // className="mr-1 p-1 rounded border-2 border-solid border-black"
           className="mr-2 py-1 pr-1"

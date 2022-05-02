@@ -4,7 +4,6 @@ import { navigate } from "gatsby";
 import { API } from "aws-amplify";
 import { Button, TextField, Box, FormHelperText } from "@mui/material";
 import PropTypes from "prop-types";
-import RichTextEditor from "react-rte";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "gatsby";
@@ -13,21 +12,9 @@ import { createPost, updatePost } from "../../../../graphql/mutations";
 import { getYoutubeVideoId } from "../../../../utils";
 import { navigation } from "../../../../constants";
 
-const toolbarConfig = {
-  display: ["INLINE_STYLE_BUTTONS", "BLOCK_TYPE_BUTTONS"],
-  INLINE_STYLE_BUTTONS: [
-    { label: "Bold", style: "BOLD" },
-    { label: "Italic", style: "ITALIC" },
-    { label: "Strikethrough", style: "STRIKETHROUGH" },
-  ],
-  BLOCK_TYPE_BUTTONS: [
-    { label: "UL", style: "unordered-list-item" },
-    { label: "OL", style: "ordered-list-item" },
-  ],
-};
 const POST_FORM_INITIAL_VALUES = {
   title: "",
-  body: RichTextEditor.createEmptyValue(),
+  body: "",
   source: "",
 };
 const PostForm = ({ post }) => {
@@ -44,24 +31,16 @@ const PostForm = ({ post }) => {
     post ? formatMuscles(post.muscles) : {}
   );
 
-  function handleRichTextInputChange(value) {
-    formik.setFieldValue("body", value);
-  }
-
   async function handleSubmit(values, { setSubmitting, setFieldError }) {
     try {
       setError(null);
-      if (!values.body.getEditorState().getCurrentContent().hasText()) {
-        setFieldError("body", "Description cannot be blank.");
-        return;
-      }
       const result = await API.graphql({
         query: post ? updatePost : createPost,
         variables: {
           input: {
             ...values,
             ...(post ? { id: post.id } : {}),
-            body: values.body.toString("markdown"),
+            body: values.body,
             youtubeVideoId: getYoutubeVideoId(values.source),
             muscles: Object.keys(selectedMuscles),
           },
@@ -127,34 +106,29 @@ const PostForm = ({ post }) => {
           setSelectedMuscles={setSelectedMuscles}
         />
       </Box>
-      <div className="mb-2">
-        <Box
-          sx={{
-            width: "100%",
-            maxWidth: "md",
-            display: "block",
-            border: "2px solid rgb(118, 118, 118)",
-            borderRadius: "4px",
-          }}
-        >
-          <RichTextEditor
-            id="body"
-            name="body"
-            className="custom-rte-editor-style"
-            toolbarConfig={toolbarConfig}
-            value={formik.values.body}
-            onChange={handleRichTextInputChange}
-          />
-        </Box>
-        <div className="ml-3">
-          <FormHelperText>Description</FormHelperText>
-        </div>
-        {formik.touched.body && formik.errors.body ? (
-          <div className="ml-3">
-            <FormHelperText error>{formik.errors.body}</FormHelperText>
-          </div>
-        ) : null}
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "md",
+        }}
+      >
+        <TextField
+          fullWidth
+          multiline
+          label="Description"
+          id="body"
+          name="body"
+          {...formik.getFieldProps("body")}
+        />
+      </Box>
+      <div className="ml-3">
+        <FormHelperText>Description</FormHelperText>
       </div>
+      {formik.touched.body && formik.errors.body ? (
+        <div className="ml-3">
+          <FormHelperText error>{formik.errors.body}</FormHelperText>
+        </div>
+      ) : null}
       {error ? <div className="mb-2">{error}</div> : null}
       {post ? (
         <Button

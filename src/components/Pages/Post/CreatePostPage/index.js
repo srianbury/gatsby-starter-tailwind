@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 // import PropTypes from "prop-types"; TODO
-import RichTextEditor from "react-rte";
 import { getPost } from "../../../../graphql/queries";
 import { Layout } from "../../../Layout";
 import { Seo } from "../../../Seo";
@@ -46,7 +45,7 @@ const CreatePostPage = ({ location }) => {
             muscles: data.muscles,
             source: data.source,
             title: data.title,
-            body: RichTextEditor.createValueFromString(data.body, "markdown"),
+            body: data.body,
           });
           console.log({ data });
           setValidId(true);

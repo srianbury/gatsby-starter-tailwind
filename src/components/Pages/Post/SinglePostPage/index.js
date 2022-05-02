@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { API } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import RichTextEditor from "react-rte";
-import { Skeleton, Button, Alert } from "@mui/material";
+import { Skeleton, Button, Box, Alert } from "@mui/material";
 import { navigate } from "gatsby";
+
 import { Layout } from "../../../Layout";
 import { Seo } from "../../../Seo";
 import { getPost } from "../../../../graphql/queries";
@@ -58,9 +58,9 @@ const PostView = ({ post, user }) => (
       </div>
     </div>
     <SelectedMuscleChips muscles={post.muscles} />
-    <MarkdownViewer
-      value={RichTextEditor.createValueFromString(post.body, "markdown")}
-    />
+    <Box sx={{ py: 1 }}>
+      <div style={{ whiteSpace: "pre-line" }}>{post.body}</div>
+    </Box>
     <DeletePostButton post={post} user={user} />
   </div>
 );
@@ -167,12 +167,6 @@ const SourceController = ({ youtubeVideoId }) => {
 SourceController.propTypes = {
   youtubeVideoId: PropTypes.string,
 };
-
-const MarkdownViewer = ({ value }) => (
-  <div className="markdown-viewonly">
-    <RichTextEditor readOnly value={value} toolbarConfig={{ display: [] }} />
-  </div>
-);
 
 const PostViewSkeleton = () => (
   <div>
