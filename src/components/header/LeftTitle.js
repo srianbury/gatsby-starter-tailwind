@@ -5,7 +5,6 @@ import { Link } from "gatsby";
 import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavDrawer, NavDrawerContext } from "../NavDrawer";
-// import { breakpoint } from "./common";
 
 const LeftTitle = ({ siteTitle }) => {
   const { openDrawer } = useContext(NavDrawerContext);

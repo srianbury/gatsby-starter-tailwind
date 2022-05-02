@@ -39,3 +39,4 @@ Header.propTypes = {
 };
 
 export { Header };
+export * from "./HeaderLink";

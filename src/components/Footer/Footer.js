@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box } from "@mui/material";
 import { LayoutContainer } from "../LayoutContainer";
-import { HeaderLink } from "../Header/HeaderLink";
+import { HeaderLink } from "../Header";
 import { navigation } from "../../constants";
 
 const Footer = () => (
