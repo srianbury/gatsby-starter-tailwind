@@ -31,7 +31,7 @@ const PostForm = ({ post }) => {
     post ? formatMuscles(post.muscles) : {}
   );
 
-  async function handleSubmit(values, { setSubmitting, setFieldError }) {
+  async function handleSubmit(values, { setSubmitting }) {
     try {
       setError(null);
       const result = await API.graphql({
@@ -75,6 +75,8 @@ const PostForm = ({ post }) => {
           width: "100%",
           maxWidth: "sm",
           display: "block",
+          mb: 2,
+          mr: 2,
         }}
       />
       <TextField
@@ -91,6 +93,8 @@ const PostForm = ({ post }) => {
           width: "100%",
           maxWidth: "sm",
           display: "block",
+          mb: 2,
+          mr: 2,
         }}
       />
       <Box
@@ -98,7 +102,8 @@ const PostForm = ({ post }) => {
           width: "100%",
           maxWidth: "sm",
           display: "block",
-          marginBottom: 1,
+          mb: 2,
+          mr: 2,
         }}
       >
         <MuscleSelect
@@ -110,6 +115,8 @@ const PostForm = ({ post }) => {
         sx={{
           width: "100%",
           maxWidth: "md",
+          mb: 2,
+          mr: 2,
         }}
       >
         <TextField
@@ -121,15 +128,25 @@ const PostForm = ({ post }) => {
           {...formik.getFieldProps("body")}
         />
       </Box>
-      <div className="ml-3">
+      <Box
+        sx={{
+          mb: 2,
+          mr: 2,
+        }}
+      >
         <FormHelperText>Description</FormHelperText>
-      </div>
+      </Box>
       {formik.touched.body && formik.errors.body ? (
-        <div className="ml-3">
+        <Box
+          sx={{
+            mb: 2,
+            mr: 2,
+          }}
+        >
           <FormHelperText error>{formik.errors.body}</FormHelperText>
-        </div>
+        </Box>
       ) : null}
-      {error ? <div className="mb-2">{error}</div> : null}
+      {error ? <Box sx={{ mb: 2, mr: 2 }}>{error}</Box> : null}
       {post ? (
         <Button
           sx={{ mr: 1 }}
@@ -141,7 +158,12 @@ const PostForm = ({ post }) => {
           Cancel
         </Button>
       ) : null}
-      <Button type="submit" variant="outlined" disabled={formik.isSubmitting}>
+      <Button
+        sx={{ mr: 1 }}
+        type="submit"
+        variant="outlined"
+        disabled={formik.isSubmitting}
+      >
         {post ? "Update" : "Submit"}
       </Button>
     </form>
