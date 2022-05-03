@@ -11,8 +11,8 @@ import { LoginModal } from "./src/components/LoginModal";
 import { NavDrawer } from "./src/components/NavDrawer";
 import { getTheme } from "./src/styles";
 import { GlobalErrorBoundry } from "./src/components/ErrorBoundary";
-import "./src/styles/global.css";
 import { WrappedRootElement } from "./src/components/WrappedRootElement";
+import "./src/styles/global.css";
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
