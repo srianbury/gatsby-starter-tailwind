@@ -3,11 +3,15 @@
   "serviceConfiguration": {
     "apiName": "dooblydoo",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "C:\\Users\\rsunb\\OneDrive\\Documents\\Github\\app-starter\\client\\amplify\\backend\\api\\dooblydoo\\schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-7f7e7162-de4b-474e-b708-bbbb4a17daa7/amplify/backend/api/dooblydoo/schema.graphql",
     "defaultAuthType": {
       "mode": "AWS_IAM"
     },
-    "conflictResolution": {},
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    },
     "additionalAuthTypes": [
       {
         "mode": "AMAZON_COGNITO_USER_POOLS",

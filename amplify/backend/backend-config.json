@@ -43,14 +43,22 @@
             }
           ]
         }
-      }
+      },
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "dooblydood47829cc",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ]
     }
   },
   "hosting": {
     "amplifyhosting": {
       "service": "amplifyhosting",
-      "type": "cicd",
-      "lastPushTimeStamp": "2022-05-02T02:30:06.608Z"
+      "type": "cicd"
     }
   }
 }
