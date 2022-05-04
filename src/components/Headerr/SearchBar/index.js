@@ -14,8 +14,19 @@ const SearchBar = () => {
 
   function handleKeyDown(e) {
     if (e.key === "Enter") {
-      navigate(`/${navigation.SEARCH}?${QUERY_PARAMS.QUERY}=${e.target.value}`);
+      doSearch(e.target.value);
     }
+  }
+
+  function handleClick() {
+    doSearch(searchBarText);
+  }
+
+  function doSearch(search) {
+    if (search.trim() === "") {
+      return;
+    }
+    navigate(`/${navigation.SEARCH}?${QUERY_PARAMS.QUERY}=${search}`);
   }
 
   return (
@@ -29,7 +40,12 @@ const SearchBar = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+      <IconButton
+        type="submit"
+        sx={{ p: "10px" }}
+        aria-label="search"
+        onClick={handleClick}
+      >
         <SearchIcon />
       </IconButton>
     </Box>

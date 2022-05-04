@@ -12,15 +12,14 @@ const LeftTitle = ({ siteTitle }) => {
   return (
     <div className={`align-middle md:block`}>
       <div className={`inline align-middle md:hidden`}>
-        <button
-          // className="mr-1 p-1 rounded border-2 border-solid border-black"
-          className="mr-2 py-1 pr-1"
+        <IconButton
+          sx={{ mr: 2, py: 1, pr: 1 }}
+          type="submit"
+          aria-label="search"
           onClick={openDrawer}
         >
-          <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-            <MenuIcon />
-          </IconButton>
-        </button>
+          <MenuIcon />
+        </IconButton>
         <NavDrawer />
       </div>
       <div className="inline">
